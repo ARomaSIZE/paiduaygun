@@ -10,4 +10,5 @@ export const COLORS = {
     success: "#00BF13" ,
     warign: "#FFD600" ,
     danger: "#DE5050" ,
+    B1: "#EBF1FF",
 }

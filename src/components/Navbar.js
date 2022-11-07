@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -8,6 +9,7 @@ import { COLORS } from "../../values/colors";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import Logo from "../../imgs/Logo.svg";
 
 export default function Navbar() {
   return (
@@ -17,37 +19,38 @@ export default function Navbar() {
           sx={{ flexGrow: 1, justifyContent: "space-between", marginTop: 0.7 }}
         >
           <Grid container spacing={6}>
-            <Grid item>
+            <Grid sx={{marginTop:3}}>
               <Link href="/home">
-                <Typography color={COLORS.grey1} sx={{ fontSize: 20 }}>
-                  [BrandLogo]
+                <Typography color={COLORS.grey1}>
+                  <Image src={Logo} alt="logo" width={220} />
                 </Typography>
               </Link>
             </Grid>
+
             <Grid item>
               <Link href="/home">
-                <Typography color={COLORS.grey1} sx={{ fontSize: 20 }}>
+                <Typography color={COLORS.grey1} sx={{ fontSize: 18 }}>
                   Home
                 </Typography>
               </Link>
             </Grid>
             <Grid item>
               <Link href="/feed">
-                <Typography color={COLORS.grey1} sx={{ fontSize: 20 }}>
+                <Typography color={COLORS.grey1} sx={{ fontSize: 18 }}>
                   Feed
                 </Typography>
               </Link>
             </Grid>
             <Grid item>
               <Link href="/contact">
-                <Typography color={COLORS.grey1} sx={{ fontSize: 20 }}>
+                <Typography color={COLORS.grey1} sx={{ fontSize: 18 }}>
                   Contact
                 </Typography>
               </Link>
             </Grid>
             <Grid item>
               <Link href="/profile">
-                <Typography color={COLORS.grey1} sx={{ fontSize: 20 }}>
+                <Typography color={COLORS.grey1} sx={{ fontSize: 18 }}>
                   Profile
                 </Typography>
               </Link>

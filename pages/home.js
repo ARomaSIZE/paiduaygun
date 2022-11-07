@@ -1,4 +1,11 @@
-import Banner from "../imgs/ImageHeader.jpg";
+import Banner from "../imgs/imagebg.jpg";
+import List from "../imgs/iconlist.svg";
+import Sraech from "../imgs/iconreshot.svg";
+import Car from "../imgs/iconcar.svg";
+import Hospital from "../imgs/hospitalicon.svg";
+import Mask from "../imgs/maskicon.svg";
+import Nohandshake from "../imgs/handshakeicon.svg";
+import Carsharing from "../imgs/carsharing.svg";
 import Image from "next/image";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -9,13 +16,16 @@ import { COLORS } from "../values/colors";
 export default function Home() {
   return (
     <>
-      <Box>
-        <Image src={Banner} alt="banner" />
+      <Box style={{ width: "100%", height: "100%", position: "relative" }}>
+        <Image src={Banner} alt="banner" fill sizes="100vw" />
       </Box>
       <Container sx={{ marginTop: 20 }} maxWidth="xl">
         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-            <Typography sx={{fontWeight:'bold'}}>Your pick of rides at low prices</Typography>
+            <Image src={List} alt="listicon" width={130} />
+            <Typography sx={{ fontWeight: "bold" }}>
+              Your pick of rides at low prices
+            </Typography>
             <Typography color={COLORS.grey}>
               No matter where you’re going, by bus or carpool, find the perfect
               ride from our wide range of destinations and routes at low prices.
@@ -23,7 +33,10 @@ export default function Home() {
           </Grid>
 
           <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-            <Typography sx={{fontWeight:'bold'}}>Trust who you share with</Typography>
+            <Image src={Sraech} alt="listicon" width={120} height={130} />
+            <Typography sx={{ fontWeight: "bold" }}>
+              Trust who you share with
+            </Typography>
             <Typography color={COLORS.grey}>
               We take the time to get to know each of our members and bus
               partners. We check reviews, profiles and IDs, so you know who
@@ -33,7 +46,10 @@ export default function Home() {
           </Grid>
 
           <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-            <Typography sx={{fontWeight:'bold'}}>Scroll, click, tap and go!</Typography>
+            <Image src={Car} alt="listicon" width={120} height={130} />
+            <Typography sx={{ fontWeight: "bold" }}>
+              Scroll, click, tap and go!
+            </Typography>
             <Typography color={COLORS.grey}>
               Booking a ride has never been easier! Thanks to our simple app
               powered by great technology, you can book a ride close to you in
@@ -41,37 +57,121 @@ export default function Home() {
             </Typography>
           </Grid>
         </Grid>
-
-        <Typography sx={{fontWeight:'bold'}}>
-          COVID-19 Safety Guidelines
-        </Typography>
-        <Typography  color={COLORS.grey}>
-          To keep everyone safe, please make sure to follow the guidelines
-          below.
-        </Typography>
-
-        <Box sx={{marginTop:5}}>
-          <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-            <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-              <Typography sx={{fontWeight:'bold'}}>Synptom-free</Typography>
-              <Typography color={COLORS.grey}>Check your covid-19 and show ATK testing</Typography>
-            </Grid>
-
-            <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-              <Typography sx={{fontWeight:'bold'}}>Wearing a mask</Typography>
-              <Typography color={COLORS.grey}>
-                We recommend wearing a mask, please follow the regulations in
-                your province.
-              </Typography>
-            </Grid>
-
-            <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-              <Typography sx={{fontWeight:'bold'}}>Avoid contact</Typography>
-              <Typography color={COLORS.grey}>Avoid handshakes or physical contact with other members</Typography>
-            </Grid>
-          </Grid>
-        </Box>
       </Container>
+
+      <Box sx={{ backgroundColor: COLORS.B1, height: 400, marginTop: 10 }}>
+        <Container sx={{ marginTop: 20 }} maxWidth="xl">
+          <Box sx={{ paddingTop: 5 }}>
+            <Typography sx={{ fontWeight: "bold" }}>
+              COVID-19 Safety Guidelines
+            </Typography>
+            <Typography color={COLORS.grey}>
+              To keep everyone safe, please make sure to follow the guidelines
+              below.
+            </Typography>
+          </Box>
+          <Box sx={{ marginTop: 4 }}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+              <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
+                <Image src={Hospital} alt="listicon" width={120} height={120} />
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Synptom-free
+                </Typography>
+                <Typography color={COLORS.grey}>
+                  Check your covid-19 and show ATK testing
+                </Typography>
+              </Grid>
+
+              <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
+                <Image src={Mask} alt="listicon" width={120} height={120} />
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Wearing a mask
+                </Typography>
+                <Typography color={COLORS.grey}>
+                  We recommend wearing a mask, please follow the regulations in
+                  your province.
+                </Typography>
+              </Grid>
+
+              <Grid
+                item
+                xs={2}
+                sm={4}
+                md={4}
+                sx={{ paddingRight: 20, marginBottom: 10 }}
+              >
+                <Image
+                  src={Nohandshake}
+                  alt="listicon"
+                  width={120}
+                  height={120}
+                />
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Avoid contact
+                </Typography>
+                <Typography color={COLORS.grey}>
+                  Avoid handshakes or physical contact with other members
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
+
+      <Container sx={{ marginTop: 10 }} maxWidth="xl">
+          <Box sx={{ marginTop: 5 }}>
+            <Box>
+              <Typography sx={{ fontWeight: "bold" }}>Guide routes</Typography>
+              <Typography color={COLORS.grey}>
+                To keep everyone safe, please make sure to follow the guidelines
+                below.
+              </Typography>
+            </Box>
+
+            <Box sx={{ flexGrow: 1, marginTop: 5, display: "flex" }}>
+              <Grid container>
+                <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
+                  <FormRow />
+                </Grid>
+                <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
+                  <FormRow />
+                </Grid>
+                <Grid container item spacing={1}>
+                  <FormRow />
+                </Grid>
+              </Grid>
+
+              <Box>
+                <Grid container item spacing={1}>
+                  <Image
+                    src={Carsharing}
+                    alt="Carsharing"
+                    width={250}
+                    height={250}
+                    sx={{ marginRight: 50 }}
+                  />
+                </Grid>
+              </Box>
+            </Box>
+          </Box>
+      </Container>
+
+      <Box
+        sx={{ backgroundColor: COLORS.B1, height: 300, marginTop: 10 }}
+      ></Box>
+    </>
+  );
+}
+
+function FormRow() {
+  return (
+    <>
+      <Grid item xs={6}>
+        <Typography>Meang chiang mai to Meang Lampang</Typography>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography>Meang chiang mai to Meang Lampang</Typography>
+      </Grid>
     </>
   );
 }

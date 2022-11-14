@@ -17,9 +17,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'; //check
 export default function history_booking() {
 
     const [user, setUser] = useState([
-        { "id": 1, "name": "Taeo Maxview", "age": 12, "rating": 3.2, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" },
-        { "id": 2, "name": "Macho", "age": 18, "rating": 5.0, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" },
-        { "id": 3, "name": "Nuna Maxview", "age": 20, "rating": 5.4, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" },
+        { "id": 1, "name": "Taeo Maxview", "age": 12, "rating": 3.2, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" ,"price":350},
+        { "id": 2, "name": "Macho", "age": 18, "rating": 5.0, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" ,"price":350},
+        { "id": 3, "name": "Nuna Maxview", "age": 20, "rating": 5.4, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" ,"price":350},
 
     ]);
 
@@ -64,7 +64,7 @@ export default function history_booking() {
                                             <Divider orientation="vertical"></Divider>
 
                                         </Grid>
-                                        <Grid item marginLeft={3}>
+                                        <Grid item marginLeft={3} xs={5.5}>
                                             <Stack spacing={1} direction="column" >
                                                 <div>{user.date}</div>
                                                 <Box ><span>{user.timeorigin}</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>{user.origin}</span>  </Box>
@@ -77,6 +77,10 @@ export default function history_booking() {
                                             </Box>
 
                                             </Stack>
+                                        </Grid>
+                                        <Grid item >
+                                        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>$ {user.price} </Typography> 
+                                        <Typography  sx={{ color:COLORS.grey1 }}>per passenger </Typography> 
 
                                         </Grid>
                                     </Grid>

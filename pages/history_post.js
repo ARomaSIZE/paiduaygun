@@ -14,6 +14,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'; //check
 
 
 
+
 export default function history_post() {
 
     const [user, setUser] = useState([
@@ -79,8 +80,8 @@ export default function history_post() {
                                             </Stack>
                                         </Grid>
                                         <Grid item >
-                                        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>$ {user.price} </Typography> 
-                                        <Typography  sx={{ color:COLORS.grey1 }}>per passenger </Typography> 
+                                        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>$ {user.price} </Typography>
+                                        <Typography  sx={{ color:COLORS.grey1 }}>per passenger </Typography>
 
                                         </Grid>
                                     </Grid>

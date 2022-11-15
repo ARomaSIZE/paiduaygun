@@ -20,10 +20,13 @@ export default function Home() {
     <>
       <Stack>
         <Paper>
-          <Box sx={{ backgroundColor: COLORS.B1, height: 450 }}>
-            {/* <Image src={Banner} alt="banner"/> */}
-            <Image src={ImageHeader2} alt="imageheader" />
-          </Box>
+          {/* <Container maxWidth="xl"> */}
+            <Box
+              sx={{ backgroundColor: COLORS.B1, height: 500, width: "auto" }}
+            >
+              <Image src={ImageHeader2} alt="imageheader" height={500} />
+            </Box>
+          {/* </Container> */}
         </Paper>
 
         <Paper>
@@ -69,111 +72,119 @@ export default function Home() {
           </Container>
         </Paper>
 
-        <Box sx={{ backgroundColor: COLORS.B1, height: 400, marginTop: 10 }}>
-          <Container sx={{ marginTop: 20 }} maxWidth="xl">
-            <Box sx={{ paddingTop: 5 }}>
-              <Typography sx={{ fontWeight: "bold" }}>
-                COVID-19 Safety Guidelines
-              </Typography>
-              <Typography color={COLORS.grey}>
-                To keep everyone safe, please make sure to follow the guidelines
-                below.
-              </Typography>
-            </Box>
-            <Box sx={{ marginTop: 4 }}>
-              <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-                <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-                  <Image
-                    src={Hospital}
-                    alt="listicon"
-                    width={120}
-                    height={120}
-                  />
-                  <Typography sx={{ fontWeight: "bold" }}>
-                    Synptom-free
-                  </Typography>
-                  <Typography color={COLORS.grey}>
-                    Check your covid-19 and show ATK testing
-                  </Typography>
-                </Grid>
+        <Paper>
+          <Box sx={{ backgroundColor: COLORS.B1, height: 400, marginTop: 10 }}>
+            <Container sx={{ marginTop: 20 }} maxWidth="xl">
+              <Box sx={{ paddingTop: 5 }}>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  COVID-19 Safety Guidelines
+                </Typography>
+                <Typography color={COLORS.grey}>
+                  To keep everyone safe, please make sure to follow the
+                  guidelines below.
+                </Typography>
+              </Box>
+              <Box sx={{ marginTop: 4 }}>
+                <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                  <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
+                    <Image
+                      src={Hospital}
+                      alt="listicon"
+                      width={120}
+                      height={120}
+                    />
+                    <Typography sx={{ fontWeight: "bold" }}>
+                      Synptom-free
+                    </Typography>
+                    <Typography color={COLORS.grey}>
+                      Check your covid-19 and show ATK testing
+                    </Typography>
+                  </Grid>
 
-                <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
-                  <Image src={Mask} alt="listicon" width={120} height={120} />
-                  <Typography sx={{ fontWeight: "bold" }}>
-                    Wearing a mask
-                  </Typography>
-                  <Typography color={COLORS.grey}>
-                    We recommend wearing a mask, please follow the regulations
-                    in your province.
-                  </Typography>
-                </Grid>
+                  <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
+                    <Image src={Mask} alt="listicon" width={120} height={120} />
+                    <Typography sx={{ fontWeight: "bold" }}>
+                      Wearing a mask
+                    </Typography>
+                    <Typography color={COLORS.grey}>
+                      We recommend wearing a mask, please follow the regulations
+                      in your province.
+                    </Typography>
+                  </Grid>
 
-                <Grid
-                  item
-                  xs={2}
-                  sm={4}
-                  md={4}
-                  sx={{ paddingRight: 20, marginBottom: 10 }}
-                >
-                  <Image
-                    src={Nohandshake}
-                    alt="listicon"
-                    width={120}
-                    height={120}
-                  />
-                  <Typography sx={{ fontWeight: "bold" }}>
-                    Avoid contact
-                  </Typography>
-                  <Typography color={COLORS.grey}>
-                    Avoid handshakes or physical contact with other members
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </Container>
-        </Box>
-
-        <Container sx={{ marginTop: 10 }} maxWidth="xl">
-          <Box sx={{ marginTop: 5 }}>
-            <Box>
-              <Typography sx={{ fontWeight: "bold" }}>Guide routes</Typography>
-              <Typography color={COLORS.grey}>
-                To keep everyone safe, please make sure to follow the guidelines
-                below.
-              </Typography>
-            </Box>
-
-            <Box sx={{ flexGrow: 1, marginTop: 5, display: "flex" }}>
-              <Grid container>
-                <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
-                  <FormRow />
-                </Grid>
-                <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
-                  <FormRow />
-                </Grid>
-                <Grid container item spacing={1}>
-                  <FormRow />
-                </Grid>
-              </Grid>
-
-              <Box>
-                <Grid container item spacing={1}>
-                  <Image
-                    src={Carsharing}
-                    alt="Carsharing"
-                    width={250}
-                    height={250}
-                    sx={{ marginRight: 50 }}
-                  />
+                  <Grid
+                    item
+                    xs={2}
+                    sm={4}
+                    md={4}
+                    sx={{ paddingRight: 20, marginBottom: 10 }}
+                  >
+                    <Image
+                      src={Nohandshake}
+                      alt="listicon"
+                      width={120}
+                      height={120}
+                    />
+                    <Typography sx={{ fontWeight: "bold" }}>
+                      Avoid contact
+                    </Typography>
+                    <Typography color={COLORS.grey}>
+                      Avoid handshakes or physical contact with other members
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Box>
-            </Box>
+            </Container>
           </Box>
-        </Container>
+        </Paper>
 
-        <Box
-          sx={{ backgroundColor: COLORS.B1, height: 300, marginTop: 10 }}
-        ></Box>
+        <Paper>
+          <Container sx={{ marginTop: 10 }} maxWidth="xl">
+            <Box sx={{ marginTop: 5 }}>
+              <Box>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  Guide routes
+                </Typography>
+                <Typography color={COLORS.grey}>
+                  To keep everyone safe, please make sure to follow the
+                  guidelines below.
+                </Typography>
+              </Box>
+
+              <Box sx={{ flexGrow: 1, marginTop: 5, display: "flex" }}>
+                <Grid container>
+                  <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
+                    <FormRow />
+                  </Grid>
+                  <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
+                    <FormRow />
+                  </Grid>
+                  <Grid container item spacing={1}>
+                    <FormRow />
+                  </Grid>
+                </Grid>
+
+                <Box>
+                  <Grid container item spacing={1}>
+                    <Image
+                      src={Carsharing}
+                      alt="Carsharing"
+                      width={250}
+                      height={250}
+                      sx={{ marginRight: 50 }}
+                    />
+                  </Grid>
+                </Box>
+              </Box>
+            </Box>
+          </Container>
+        </Paper>
+
+        <Paper>
+          <Box
+            sx={{ backgroundColor: COLORS.B1, height: 300, marginTop: 10 }}
+          ></Box>
+        </Paper>
       </Stack>
     </>
   );

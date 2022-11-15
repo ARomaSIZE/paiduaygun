@@ -10,6 +10,8 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import CircleIcon from '@mui/icons-material/Circle';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; //check
 
+import History_post from "../src/components/History_booking";
+
 
 
 
@@ -35,59 +37,11 @@ export default function history_post() {
 
                 </Grid>
                 <Grid item xs={9}>
-                    {user.map((user, index) => {
-                        return (
-                            <div key={index}>
-                                <Box sx={{ backgroundColor: COLORS.F4, borderRadius: 5, marginTop: 6, padding: 4 }}>
-                                    <Grid container >
-                                        <Grid item xs={1} sm={4} md={2}>
-                                            <div style={{ borderRadius: '1px', overflow: 'hidden', width: '130px', height: '130px' }}>
-                                                <Image
-                                                    src={profile_boy}
-                                                    alt="profile"
-                                                    width={130}
-                                                    height={130}
-                                                />
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={3} >
-                                            <Stack spacing={1} direction="column"  >
-                                                <div><Typography variant="h6" sx={{ fontWeight: 'bold' }}>{user.name}</Typography> </div>
-                                                <div>{user.age} years old</div>
-                                                <div>Intermediate</div>
-                                                <div> <StarIcon sx={{ color: COLORS.warign }} /> {user.rating} </div>
-
-                                            </Stack>
-
-                                        </Grid>
-                                        <Grid item >
-                                            <Divider orientation="vertical"></Divider>
-
-                                        </Grid>
-                                        <Grid item marginLeft={3} xs={5.5}>
-                                            <Stack spacing={1} direction="column" >
-                                                <div>{user.date}</div>
-                                                <Box ><span>{user.timeorigin}</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>{user.origin}</span>  </Box>
-                                                <Box><span>{user.timedes}</span> <PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>{user.destination}</span>  </Box>
-                                                <Box>
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                            </Box>
-
-                                            </Stack>
-                                        </Grid>
-                                        <Grid item >
-                                        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>$ {user.price} </Typography> 
-                                        <Typography  sx={{ color:COLORS.grey1 }}>per passenger </Typography> 
-
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                            </div>
-                        );
-                    })}
+                <Grid item xs={9}>
+                    
+                    <History_post/>
+                
+                </Grid>
                 </Grid>
 
             </Grid>

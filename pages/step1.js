@@ -1,10 +1,10 @@
-import { Box, Grid, Container, Divider, Paper, Typography, Button, Card, Checkbox } from "@mui/material";
+import { Box, Grid, Divider, Typography, Button, Card, Checkbox } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import { useState } from "react";
-import { COLORS } from "../values/colors";
+import {COLORS} from "../values/colors.js"
 import Image from 'next/image';
 import profile_boy from "../imgs/profile_boy.jpg"
-import car_detail from "../imgs/car_detail.png"
+
 import StarIcon from '@mui/icons-material/Star'; //star
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 
@@ -15,26 +15,21 @@ import StepLabel from '@mui/material/StepLabel';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
-import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';   //car type
-import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined'; //License Car:
-import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined'; //pet
-import MusicNoteOutlinedIcon from '@mui/icons-material/MusicNoteOutlined'; //music
-import SmokingRoomsOutlinedIcon from '@mui/icons-material/SmokingRoomsOutlined';  //smoking
-import EventSeatOutlinedIcon from '@mui/icons-material/EventSeatOutlined'; //seat
-import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined'; //baby
-import LuggageOutlinedIcon from '@mui/icons-material/LuggageOutlined'; //Trunk space
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'; //check
-import CircleIcon from '@mui/icons-material/Circle';
+
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
+
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+
 
 import Rating from '@mui/material/Rating';
+//import car info component
+import CarInfo from "../src/components/CarInfo";
 
+import Driver_detail from "../src/components/Driver_detail.js";
+import Other_detail from "../src/components/Other_detail.js";
 
 const steps = [
     'Step',
@@ -45,7 +40,7 @@ const steps = [
 
 
 export default function step1() {
-    var step = 4;
+    var step = 3;
     var btntxt = '';
 
     //Dialog rating
@@ -82,43 +77,9 @@ export default function step1() {
                             </Stepper>
                         </Box>
 
-                        <Box sx={{ backgroundColor: COLORS.F4, borderRadius: 5, marginTop: 6, padding: 4 }}>
-                            <Grid container >
-                                <Grid item xs={2} sm={4} md={2.5}>
-                                    <div style={{ borderRadius: '1px', overflow: 'hidden', width: '130px', height: '130px' }}>
-                                        <Image
-                                            src={profile_boy}
-                                            alt="profile"
-                                            width={130}
-                                            height={130}
-                                        />
-                                    </div>
-                                </Grid>
-                                <Grid item xs={3} >
-                                    <Stack spacing={1} direction="column"  >
-                                        <div><Typography variant="h6" sx={{ fontWeight: 'bold' }}>Taeo Maxview.</Typography> </div>
-                                        <div>23 years old</div>
-                                        <div>Intermediate</div>
-                                        <div> <StarIcon sx={{ color: COLORS.warign }} /> 4.2 </div>
+                       {/* driver info  */}
+                       <Driver_detail/>
 
-                                    </Stack>
-
-                                </Grid>
-                                <Grid item >
-                                    <Divider orientation="vertical"></Divider>
-
-                                </Grid>
-                                <Grid item marginLeft={3}>
-                                    <Stack spacing={1.8} direction="column" >
-                                    <div>12/01/2023 - 12:00</div>
-                                    <Box ><span>16:00</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>Meaung Chiang mai</span>  </Box>
-                                    <Box><span>18:00</span> <PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>Mae hong sorn</span>  </Box>
-
-                                    </Stack>
-                                   
-                                </Grid>
-                            </Grid>
-                        </Box>
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -129,109 +90,10 @@ export default function step1() {
                             </Grid>
 
                         </Grid>
-                        {/* <div><span style={{ fontWeight: 'bold' }}> CAR INFO</span></div> */}
-                        <Grid container spacing={1} >
-                            <Grid item xs={2}>
-                                <Image
-                                    src={car_detail}
-                                    alt="car"
-                                    width={130}
-                                    height={130}
-                                />
-                            </Grid>
-                            <Grid item xs={5} >
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center" >
-                                        <Grid item>
-                                            <DirectionsCarFilledOutlinedIcon sx={{ color: COLORS.B2 }} /> Car:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Van</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <CreditCardOutlinedIcon sx={{ color: COLORS.B2 }} /> License Car:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>NCT 127XX</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <PetsOutlinedIcon sx={{ color: COLORS.B2 }} /> Pet allowed:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Yes</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <MusicNoteOutlinedIcon sx={{ color: COLORS.B2 }} /> Music:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Yes</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <SmokingRoomsOutlinedIcon sx={{ color: COLORS.B2 }} /> Smoking:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>No</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                            </Grid>
-
-
-                            <Grid item xs={5} >
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center" >
-                                        <Grid item >
-                                            <EventSeatOutlinedIcon sx={{ color: COLORS.B2 }} /> Seats:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>4</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <ChildCareOutlinedIcon sx={{ color: COLORS.B2 }} /> Baby seat:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>1</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <LuggageOutlinedIcon sx={{ color: COLORS.B2 }} /> Trunk space::
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>2 big bags max</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                            </Grid>
-
-                        </Grid>
+                        
+                        
+                       <Grid><CarInfo/></Grid> 
+                    
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -243,14 +105,7 @@ export default function step1() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> OTHER DETAILS</span></div> */}
-                        <span style={{ color: COLORS.grey }}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam,quis nostrud exercitation ullamco.
-                        </span>
-
-
-
-
+                       <Other_detail/>
 
 
                     </Grid>
@@ -327,7 +182,7 @@ export default function step1() {
                                     <Grid container>
                                         <Grid item xs={12}>
                                             {step == 0 ?
-                                                <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth>PAYMENT</Button> :
+                                                <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth>CHECK OUT</Button> :
                                                 step == 1 ? <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth>PAYMENT</Button> : step == 2 ?
                                                     <Box sx={{ display: 'flex' }}>
                                                         <Button variant="contained" sx={{ color: COLORS.white, width: '100%' }} color="error">CANCEL
@@ -336,7 +191,6 @@ export default function step1() {
                                                         </Button> </Box> : <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth onClick={handleClickOpen}>RATING</Button>
                                                 // Dialog
                                             }
-
                                         </Grid>
                                     </Grid>
                                 </ListItem>

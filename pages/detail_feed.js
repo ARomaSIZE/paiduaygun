@@ -24,6 +24,9 @@ import StarIcon from '@mui/icons-material/Star'; //star
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
+import CarInfo from "../src/components/CarInfo";
+import Other_detail from "../src/components/Other_detail.js";
+
 
 
 export default function detail_feed() {
@@ -80,108 +83,7 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> CAR INFO</span></div> */}
-                        <Grid container spacing={1} >
-                            <Grid item xs={2}>
-                                <Image
-                                    src={car_detail}
-                                    alt="car"
-                                    width={130}
-                                    height={130}
-                                />
-                            </Grid>
-                            <Grid item xs={5} >
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center" >
-                                        <Grid item>
-                                            <DirectionsCarFilledOutlinedIcon sx={{ color: COLORS.B2 }} /> Car:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Van</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <CreditCardOutlinedIcon sx={{ color: COLORS.B2 }} /> License Car:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>NCT 127XX</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <PetsOutlinedIcon sx={{ color: COLORS.B2 }} /> Pet allowed:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Yes</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <MusicNoteOutlinedIcon sx={{ color: COLORS.B2 }} /> Music:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Yes</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <SmokingRoomsOutlinedIcon sx={{ color: COLORS.B2 }} /> Smoking:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>No</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                            </Grid>
-
-
-                            <Grid item xs={5} >
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center" >
-                                        <Grid item >
-                                            <EventSeatOutlinedIcon sx={{ color: COLORS.B2 }} /> Seats:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>4</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <ChildCareOutlinedIcon sx={{ color: COLORS.B2 }} /> Baby seat:
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>1</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-
-                                <Box sx={{ backgroundColor: COLORS.F4, padding: 1, marginTop: 1 }}>
-                                    <Grid container direction="row" justifyContent="space-between" alignItems="center">
-                                        <Grid item>
-                                            <LuggageOutlinedIcon sx={{ color: COLORS.B2 }} /> Trunk space::
-                                        </Grid>
-                                        <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>2 big bags max</span>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                            </Grid>
-
-                        </Grid>
+                        <Grid><CarInfo/></Grid> 
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -193,10 +95,8 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> OTHER DETAILS</span></div> */}
-                        <span style={{ color: COLORS.grey }}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam,quis nostrud exercitation ullamco.
-                        </span>
+                        <Other_detail/>
+                        
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>

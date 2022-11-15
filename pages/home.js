@@ -16,10 +16,14 @@ import { COLORS } from "../values/colors";
 export default function Home() {
   return (
     <>
-      <Box style={{ width: "100%", height: "100%", position: "relative" }}>
-        <Image src={Banner} alt="banner" fill sizes="100vw" />
+      <Box sx={{ backgroundColor: COLORS.B1, height: 450 }}>
+        {/* <Image src={Banner} alt="banner"/> */}
+        <Container>
+          
+        </Container>
       </Box>
-      <Container sx={{ marginTop: 20 }} maxWidth="xl">
+
+      <Container sx={{ marginTop: 5 }} maxWidth="xl">
         <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={2} sm={4} md={4} sx={{ paddingRight: 20 }}>
             <Image src={List} alt="listicon" width={130} />
@@ -119,41 +123,41 @@ export default function Home() {
       </Box>
 
       <Container sx={{ marginTop: 10 }} maxWidth="xl">
-          <Box sx={{ marginTop: 5 }}>
-            <Box>
-              <Typography sx={{ fontWeight: "bold" }}>Guide routes</Typography>
-              <Typography color={COLORS.grey}>
-                To keep everyone safe, please make sure to follow the guidelines
-                below.
-              </Typography>
-            </Box>
+        <Box sx={{ marginTop: 5 }}>
+          <Box>
+            <Typography sx={{ fontWeight: "bold" }}>Guide routes</Typography>
+            <Typography color={COLORS.grey}>
+              To keep everyone safe, please make sure to follow the guidelines
+              below.
+            </Typography>
+          </Box>
 
-            <Box sx={{ flexGrow: 1, marginTop: 5, display: "flex" }}>
-              <Grid container>
-                <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
-                  <FormRow />
-                </Grid>
-                <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
-                  <FormRow />
-                </Grid>
-                <Grid container item spacing={1}>
-                  <FormRow />
-                </Grid>
+          <Box sx={{ flexGrow: 1, marginTop: 5, display: "flex" }}>
+            <Grid container>
+              <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
+                <FormRow />
               </Grid>
+              <Grid container item spacing={1} sx={{ marginBottom: 2 }}>
+                <FormRow />
+              </Grid>
+              <Grid container item spacing={1}>
+                <FormRow />
+              </Grid>
+            </Grid>
 
-              <Box>
-                <Grid container item spacing={1}>
-                  <Image
-                    src={Carsharing}
-                    alt="Carsharing"
-                    width={250}
-                    height={250}
-                    sx={{ marginRight: 50 }}
-                  />
-                </Grid>
-              </Box>
+            <Box>
+              <Grid container item spacing={1}>
+                <Image
+                  src={Carsharing}
+                  alt="Carsharing"
+                  width={250}
+                  height={250}
+                  sx={{ marginRight: 50 }}
+                />
+              </Grid>
             </Box>
           </Box>
+        </Box>
       </Container>
 
       <Box

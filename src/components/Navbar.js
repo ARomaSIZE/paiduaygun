@@ -19,8 +19,8 @@ export default function Navbar() {
           sx={{ flexGrow: 1, justifyContent: "space-between", marginTop: 0.7 }}
         >
           <Grid container spacing={6}>
-            <Grid sx={{marginTop:3}}>
-              <Link href="/home">
+            <Grid sx={{ marginTop: 3 }}>
+              <Link href="/register">
                 <Typography color={COLORS.grey1}>
                   <Image src={Logo} alt="logo" width={220} />
                 </Typography>
@@ -70,6 +70,7 @@ export default function Navbar() {
               textTransform: "none",
               boxShadow: "none",
             }}
+            href="login"
           >
             <Typography color={COLORS.B2} sx={{ fontWeight: 600 }}>
               Login

@@ -1,44 +1,28 @@
+
 import { Box, Grid, Divider, Paper, Typography, Button, Checkbox, Link } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import { useState } from "react";
-import { COLORS } from "../values/colors";
+import { COLORS } from "../../values/colors";
 import Image from 'next/image';
-import profile_boy from "../imgs/profile_boy.jpg"
-import car_detail from "../imgs/car_detail.png"
+import profile_boy from "../../imgs/profile_boy.jpg"
 import StarIcon from '@mui/icons-material/Star'; //star
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import CircleIcon from '@mui/icons-material/Circle';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; //check
 
-import History_post from "../src/components/History_booking";
 
 
 
-
-
-
-export default function history_post() {
-
+export default function History_booking(){
     const [user, setUser] = useState([
-        { "id": 1, "name": "Taeo Maxview", "age": 12, "rating": 3.2, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" ,"price":350},
-        { "id": 2, "name": "Macho", "age": 18, "rating": 5.0, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" ,"price":350},
-        { "id": 3, "name": "Nuna Maxview", "age": 20, "rating": 5.4, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" ,"price":350},
+        { "id": 1, "name": "Taeo Maxview", "age": 12, "rating": 3.2, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00", "price": 350 },
+        { "id": 2, "name": "Macho", "age": 18, "rating": 5.0, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00", "price": 350 },
+        { "id": 3, "name": "Nuna Maxview", "age": 20, "rating": 5.4, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00", "price": 350 },
 
     ]);
-
-    return (
+    return(
         <>
-            <Grid container padding={5} marginLeft={15}>
-                <Grid item xs={1.5}>
-                    <Stack spacing={3}>
-                        <Link><Typography>Personal data</Typography></Link>
-                        <Link><Typography>History post</Typography></Link>
-                        <Link><Typography>History booking</Typography></Link>
-                    </Stack>
-
-                </Grid>
-                <Grid item xs={9}>
-                    {user.map((user, index) => {
+            {user.map((user, index) => {
                         return (
                             <div key={index}>
                                 <Box sx={{ backgroundColor: COLORS.F4, borderRadius: 5, marginTop: 6, padding: 4 }}>
@@ -73,17 +57,17 @@ export default function history_post() {
                                                 <Box ><span>{user.timeorigin}</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>{user.origin}</span>  </Box>
                                                 <Box><span>{user.timedes}</span> <PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>{user.destination}</span>  </Box>
                                                 <Box>
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                            </Box>
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                </Box>
 
                                             </Stack>
                                         </Grid>
                                         <Grid item >
-                                        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>$ {user.price} </Typography>
-                                        <Typography  sx={{ color:COLORS.grey1 }}>per passenger </Typography>
+                                            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>$ {user.price} </Typography>
+                                            <Typography sx={{ color: COLORS.grey1 }}>per passenger </Typography>
 
                                         </Grid>
                                     </Grid>
@@ -91,9 +75,6 @@ export default function history_post() {
                             </div>
                         );
                     })}
-                </Grid>
-
-            </Grid>
         </>
     )
 }

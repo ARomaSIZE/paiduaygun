@@ -1,4 +1,4 @@
-import ImageHeader2 from "../imgs/ImageHeader2.jpg";
+import ImageHeader1 from "../imgs/ImageHeader1.jpg";
 import List from "../imgs/iconlist.svg";
 import Sraech from "../imgs/iconreshot.svg";
 import Car from "../imgs/iconcar.svg";
@@ -14,20 +14,105 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import { COLORS } from "../values/colors";
 import Paper from "@mui/material/Paper";
+import Button from '@mui/material/Button';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+import { useState } from "react";
+
+import CardMedia from '@mui/material/CardMedia';
+import Card from '@mui/material/CardMedia';
+
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+
+import TextField from '@mui/material/TextField';
+
+import InputAdornment from '@mui/material/InputAdornment';
+
+
+
 
 export default function Home() {
+ 
   return (
     <>
       <Stack>
         <Paper>
           {/* <Container maxWidth="xl"> */}
-            <Box
-              sx={{ backgroundColor: COLORS.B1, height: 500, width: "auto" }}
-            >
-              <Image src={ImageHeader2} alt="imageheader" height={500} />
+          <Box
+            sx={{ backgroundColor: COLORS.B1 }}
+          >
+            <Image src={ImageHeader1} alt="imageheader" />
+          </Box>
+          <div style={{
+            position: "absolute",
+
+            top: "70%", left: "50%"
+            , transform: "translateX(-50%)",
+
+
+          }}>
+            <Box sx={{ backgroundColor: COLORS.F4, padding: 3, width: '66Vw' }}>
+              <Grid container direction="row"  >
+                <Grid item sx={3}>
+                  <TextField
+                    id="outlined-start-adornment"
+                    sx={{ m: 1, }}
+                    placeholder="Living from..."
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start"><PlaceOutlinedIcon /></InputAdornment>,
+                    }}
+                  />
+                </Grid>
+                <Grid item sx={3}>
+                  <TextField
+                    id="outlined-start-adornment"
+                    sx={{ m: 1, }}
+                    placeholder="Going to..."
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start"><PlaceOutlinedIcon /></InputAdornment>,
+                    }}
+                  />
+
+                </Grid>
+                <Grid item sx={3}>
+                  <TextField
+                    id="outlined-start-adornment"
+                    sx={{ m: 1,  }}
+                    placeholder="Today"
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start"><CalendarTodayOutlinedIcon /></InputAdornment>,
+                    }}
+                  />
+
+                 
+
+                </Grid>
+                <Grid item sx={{ width: '8rem' }}>
+                  <TextField
+                    id="outlined-start-adornment"
+                    sx={{ m: 1, }}
+                    placeholder="0"
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start"><PersonOutlineOutlinedIcon /></InputAdornment>,
+                    }}
+                  />
+
+                </Grid>
+                <Grid item >
+                  <Button variant="contained" sx={{ m: 1, width: '12Vw', height: '5.7Vh' }}>Search</Button>
+                </Grid>
+              </Grid>
             </Box>
+
+          </div>
           {/* </Container> */}
         </Paper>
+
+
+
+
 
         <Paper>
           <Container sx={{ marginTop: 5 }} maxWidth="xl">

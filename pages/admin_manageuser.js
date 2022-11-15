@@ -10,19 +10,19 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
 const cols = [
-    { field: 'name', headerName: 'Name', minWidth: 230 },
-    { field: 'username', headerName: 'Username', minWidth: 200 },
+    { field: 'name', headerName: 'Name', minWidth: 300 },
+    { field: 'username', headerName: 'Username', minWidth: 300 },
     {
         field: 'email',
         headerName: 'Email',
-        minWidth: 270,
+        minWidth: 350,
 
     },
     {
         field: 'action',
         type: "actions",
         headerName: 'Action',
-        minWidth: 170,
+        minWidth: 350,
         getActions: (params) => [
             <Button variant="outlined" color="info">Edit</Button>,
             <Button variant="outlined" color="error">Delete</Button>
@@ -59,11 +59,7 @@ const rows = [
     { "id": 27, "name": "India", "username": "IN", "email": "12@gmaio.com" },
 ];
 
-
-
 export default function admin_manageuser() {
-
- 
 
     return (
         <>

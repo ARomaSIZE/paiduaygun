@@ -13,11 +13,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'; //check
 import History_post from "../src/components/History_booking";
 
 
-
-
-
-
-export default function history_post() {
+export default function Historypost() {
 
     const [user, setUser] = useState([
         { "id": 1, "name": "Taeo Maxview", "age": 12, "rating": 3.2, "date": '12/10/2023 - 12:00', "origin": 'Meaung Chiang mai ', 'timeorigin': '12:00', "destination": "Meag lampang", "timedes": "18:00" ,"price":350},

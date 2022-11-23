@@ -34,7 +34,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 
 export default function Home() {
- 
   return (
     <>
       <Stack>
@@ -86,7 +85,7 @@ export default function Home() {
                     }}
                   />
 
-                 
+
 
                 </Grid>
                 <Grid item sx={{ width: '8rem' }}>

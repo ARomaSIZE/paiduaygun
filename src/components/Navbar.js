@@ -79,6 +79,7 @@ export default function Navbar() {
           <Button
             variant="contained"
             sx={{ textTransform: "none", boxShadow: "none" }}
+            href="post"
           >
             <AddCircleOutlineIcon sx={{ marginRight: 1 }} />
             <Typography color={COLORS.F4} sx={{ fontWeight: 600 }}>

@@ -28,6 +28,11 @@ import CarInfo from "../src/components/CarInfo";
 import Other_detail from "../src/components/Other_detail.js";
 
 
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
+
 
 export default function detail_feed() {
     return (
@@ -83,7 +88,7 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> CAR INFO</span></div> */}
-                        <Grid><CarInfo/></Grid> 
+                        <Grid><CarInfo/></Grid>
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -96,7 +101,7 @@ export default function detail_feed() {
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> OTHER DETAILS</span></div> */}
                         <Other_detail/>
-                        
+
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -175,11 +180,15 @@ export default function detail_feed() {
                                             <div>Please,  in order to book your ride, select  preferred
                                                 seat(s) in the vehicle.
                                             </div>
-                                            <Box>
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                            <Box sx={{ display: 'flex' }}>
+                                            <FormControl>
+                                                <FormGroup aria-label="position" row>
+                                                    <FormControlLabel value="1" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
+                                                    <FormControlLabel value="2" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
+                                                    <FormControlLabel value="3" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
+                                                    <FormControlLabel value="4" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
+                                                </FormGroup>
+                                            </FormControl>
                                             </Box>
                                         </Grid>
                                         <Grid item xs={12}>
@@ -235,7 +244,7 @@ export default function detail_feed() {
                             </Grid>
                             <Grid item sx={10} marginLeft={3}>
                             <Typography style={{ fontWeight: 'bold' }} variant="h5">Macho.</Typography>
-                             <div>24 years old</div>  
+                             <div>24 years old</div>
                             </Grid>
                         </Grid>
                         </Card>

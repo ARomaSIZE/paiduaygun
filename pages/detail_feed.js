@@ -37,9 +37,7 @@ export default function detail_feed() {
                     <Grid item xs={2} marginTop={10} marginLeft={8}>
                         <PersonOutlineOutlinedIcon />2 seates available
                     </Grid>
-                    <Grid item xs={4} marginTop={10}>
-                        <CalendarTodayOutlinedIcon /> 01/10/2000 @ 16:00
-                    </Grid>
+                   
                     <Grid item xs={12} marginLeft={8}>
                         <h1>Meaung Chiang mai   <ArrowForwardIosOutlinedIcon />   Meaung Mae hong sorn</h1>
                     </Grid>
@@ -59,7 +57,7 @@ export default function detail_feed() {
 
                         </Grid>
 
-                        <CalendarTodayOutlinedIcon sx={{ color: COLORS.B2 }} />  <span >Date & time:</span>  <span style={{ color: COLORS.grey }}> 06/03/2022 - 16:00</span>
+                        <CalendarTodayOutlinedIcon sx={{ color: COLORS.B2 }} />  <span >Date & time:</span>  <span style={{ color: COLORS.grey }}> 06/03/2022 @16:00    to     07/03/2022 @15:00</span>
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
                                 <span style={{ fontWeight: 'bold' }}> DESTINATION INFO</span>

@@ -20,7 +20,7 @@ export default function Navbar() {
         >
           <Grid container spacing={6}>
             <Grid sx={{ marginTop: 3 }}>
-              <Link href="/register">
+              <Link href="/detail_feed">
                 <Typography color={COLORS.grey1}>
                   <Image src={Logo} alt="logo" width={220} />
                 </Typography>

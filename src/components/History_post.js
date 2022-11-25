@@ -25,7 +25,7 @@ export default function History_post() {
             {user.map((user, index) => {
                 return (
                     <div key={index}>
-                        <Box sx={{ backgroundColor: COLORS.F4, borderRadius: 5, marginTop: 6, padding: 4 }}>
+                        <Box sx={{ backgroundColor: COLORS.F4, borderRadius: 3, marginTop: 3, padding: 4 }}>
                             <Grid container >
                                 <Grid item xs={1} sm={4} md={2}>
                                     <div style={{ borderRadius: '1px', overflow: 'hidden', width: '130px', height: '130px' }}>

@@ -5,6 +5,10 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 import { COLORS } from "../values/colors";
+import KeyIcon from '@mui/icons-material/Key';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 export default function Login() {
   return (
@@ -31,7 +35,18 @@ export default function Login() {
                 Username
               </Typography>
               <Box>
-                <TextField id="outlined-basic" variant="outlined" fullWidth />
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                sx={{ width: 400}}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AccountCircleIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
               </Box>
             </Box>
 
@@ -44,11 +59,20 @@ export default function Login() {
                 Password
               </Typography>
               <Box>
-                <TextField
-                  id="outlined-basic"
-                  variant="outlined"
-                  sx={{ width: 500 }}
-                />
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                sx={{ width: 400 }}
+                type="password"
+                autoComplete="current-password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <KeyIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
               </Box>
             </Box>
 

@@ -1,11 +1,35 @@
+import { useState } from "react";
+
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton  from "@mui/material/IconButton";
+import Select from "@mui/material/Select";
 import { COLORS } from "../values/colors";
 
+import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import EmailIcon from '@mui/icons-material/Email';
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import CakeIcon from '@mui/icons-material/Cake';
+import PersonIcon from '@mui/icons-material/Person';
+import KeyIcon from '@mui/icons-material/Key';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 export default function Register() {
+
+  const [age, setAge] =useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
   return (
     <>
       <Container maxWidth="xl" sx={{ marginTop: 5 }}>
@@ -13,7 +37,7 @@ export default function Register() {
           sx={{
             display: "flex",
             justifyContent: "left",
-            marginLeft: 50,
+            marginLeft: 38,
             marginBottom: 5,
           }}
         >
@@ -32,7 +56,7 @@ export default function Register() {
           <Box>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Username
@@ -41,7 +65,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400}}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AccountCircleIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -49,7 +80,7 @@ export default function Register() {
           <Box sx={{ marginLeft: 10 }}>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Password
@@ -58,7 +89,16 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400 }}
+                type="password"
+                autoComplete="current-password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <KeyIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -70,7 +110,7 @@ export default function Register() {
           <Box>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Firstname
@@ -79,7 +119,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PersonIcon/>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -87,7 +134,7 @@ export default function Register() {
           <Box sx={{ marginLeft: 10 }}>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Lastname
@@ -96,7 +143,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PersonIcon/>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -108,24 +162,34 @@ export default function Register() {
           <Box>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               GENDER
             </Typography>
             <Box>
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                sx={{ width: 300 }}
-              />
+              <FormControl sx={{ minWidth: 400  }}>
+                <Select
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
+                  value={age}
+                  label="Age"
+                  onChange={handleChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Male</MenuItem>
+                  <MenuItem value={20}>Female</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
           </Box>
 
           <Box sx={{ marginLeft: 10 }}>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Age
@@ -134,7 +198,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <CakeIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -146,7 +217,7 @@ export default function Register() {
           <Box>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Email
@@ -155,7 +226,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -163,7 +241,7 @@ export default function Register() {
           <Box sx={{ marginLeft: 10 }}>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Phone
@@ -172,7 +250,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400}}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                        <LocalPhoneIcon/>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -184,7 +269,7 @@ export default function Register() {
           <Box>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Other contact
@@ -193,7 +278,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400}}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <ConnectWithoutContactIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -201,7 +293,7 @@ export default function Register() {
           <Box sx={{ marginLeft: 10 }}>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Address
@@ -210,7 +302,14 @@ export default function Register() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{ width: 400 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LocationOnIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -220,11 +319,11 @@ export default function Register() {
           sx={{
             display: "flex",
             justifyContent: "left",
-            marginLeft: 50.5,
+            marginLeft: 38,
             marginBottom: 2,
           }}
         >
-          <Typography variant="body1" color="initial" sx={{ fontWeight: 600 }}>
+          <Typography variant="body1" color=  "initial" sx={{ fontWeight: 600 }}>
             Import information
           </Typography>
         </Box>
@@ -233,34 +332,64 @@ export default function Register() {
           <Box>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               ID Card
             </Typography>
             <Box>
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                sx={{ width: 300 }}
-              />
+              <Box
+                variant="standard"
+                disableUnderline={true}
+                sx={{width: 400,height:50, border: '2px dashed' , borderRadius:2,borderColor:COLORS.B2 }}
+              >
+
+                <Box sx={{display:'flex'}}>
+                  <IconButton color="primary" aria-label="upload picture" component="label" sx={{marginTop:0.4, marginLeft:2, marginRight:2}}>
+                    <input hidden accept="image/*" type="file" />
+                    <AddPhotoAlternateOutlinedIcon />
+                  </IconButton>
+                    <Typography variant="body1" color={COLORS.backtext} sx={{marginTop:1.5, marginRight:4}}>
+                        Upload  file here
+                    </Typography>
+
+                    <Typography variant="body1" color={COLORS.grey1} sx={{marginTop:1.5}}>
+                        JPG,PNG
+                    </Typography>
+                </Box>
+              </Box>
             </Box>
           </Box>
 
           <Box sx={{ marginLeft: 10 }}>
             <Typography
               variant="body1"
-              color="initial"
+              color={COLORS.grey1}
               sx={{ fontWeight: 600, fontSize: 16 }}
             >
               Driver Licaense
             </Typography>
             <Box>
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                sx={{ width: 300 }}
-              />
+              <Box
+                variant="standard"
+                disableUnderline={true}
+                sx={{width: 400,height:50, border: '2px dashed' , borderRadius:2,borderColor:COLORS.B2 }}
+              >
+
+                <Box sx={{display:'flex'}}>
+                  <IconButton color="primary" aria-label="upload picture" component="label" sx={{marginTop:0.4, marginLeft:2, marginRight:2}}>
+                    <input hidden accept="image/*" type="file" />
+                    <AddPhotoAlternateOutlinedIcon />
+                  </IconButton>
+                    <Typography variant="body1" color={COLORS.backtext} sx={{marginTop:1.5, marginRight:4}}>
+                        Upload  file here
+                    </Typography>
+
+                    <Typography variant="body1" color={COLORS.grey1} sx={{marginTop:1.5}}>
+                        JPG,PNG
+                    </Typography>
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -271,10 +400,11 @@ export default function Register() {
             textTransform: "none",
             boxShadow: "none",
             width: 120,
+            height:50,
             backgroundColor: COLORS.B3,
             fontWeight: 600,
-            marginLeft: 50.5,
-            marginTop:2
+            marginLeft: 38,
+            marginTop: 2,
           }}
           href="/login"
         >

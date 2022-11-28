@@ -27,9 +27,15 @@ export default function Historypost() {
             <Grid container padding={5} marginLeft={15}>
                 <Grid item xs={1.5}>
                     <Stack spacing={3}>
-                        <Link><Typography>Personal data</Typography></Link>
-                        <Link><Typography>History post</Typography></Link>
-                        <Link><Typography>History booking</Typography></Link>
+                        <Link>
+                            <Typography>Personal data</Typography>
+                        </Link>
+                        <Link>
+                            <Typography>History post</Typography>
+                        </Link>
+                        <Link>
+                            <Typography>History booking</Typography>
+                        </Link>
                     </Stack>
 
                 </Grid>
@@ -66,13 +72,13 @@ export default function Historypost() {
                                         <Grid item marginLeft={3} xs={5.5}>
                                             <Stack spacing={1} direction="column" >
                                                 <div>{user.date}</div>
-                                                <Box ><span>{user.timeorigin}</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>{user.origin}</span>  </Box>
-                                                <Box><span>{user.timedes}</span> <PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>{user.destination}</span>  </Box>
+                                                    <Box ><span>{user.timeorigin}</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>{user.origin}</span>  </Box>
+                                                    <Box><span>{user.timedes}</span> <PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>{user.destination}</span>  </Box>
                                                 <Box>
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
-                                                <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
+                                                    <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />
                                             </Box>
 
                                             </Stack>
@@ -88,7 +94,6 @@ export default function Historypost() {
                         );
                     })}
                 </Grid>
-
             </Grid>
         </>
     )

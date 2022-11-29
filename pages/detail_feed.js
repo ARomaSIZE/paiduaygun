@@ -1,5 +1,5 @@
 import { Box, Grid, Container, Divider, Paper, Typography, Button, Card, Checkbox } from "@mui/material";
-import { useState } from "react";
+
 import { COLORS } from "../values/colors";
 import Image from 'next/image';
 import profile_boy from "../imgs/profile_boy.jpg"
@@ -28,15 +28,12 @@ import ListItem from '@mui/material/ListItem';
 import CarInfo from "../src/components/CarInfo";
 import Other_detail from "../src/components/Other_detail.js";
 
-
-<<<<<<< HEAD
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-=======
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -46,12 +43,10 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
 
->>>>>>> origin/dev-aim
 
 
 
 export default function detail_feed() {
-<<<<<<< HEAD
 
     const router = useRouter();
     const { rideID } = router.query;
@@ -96,7 +91,6 @@ export default function detail_feed() {
 
     console.log(joiner);
 
-=======
     const phone = '02811212';
     const email = 'aimaim.3112@gmail.com';
     const otherContact = 'Facebook:Aumaim';
@@ -110,7 +104,6 @@ export default function detail_feed() {
     const handleClose = () => {
         setOpen(false);
     };
->>>>>>> origin/dev-aim
 
     return (
         <>
@@ -161,11 +154,7 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> CAR INFO</span></div> */}
-<<<<<<< HEAD
                         <Grid><CarInfo data={detail} /></Grid>
-=======
-                        <Grid><CarInfo /></Grid>
->>>>>>> origin/dev-aim
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -177,11 +166,7 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> OTHER DETAILS</span></div> */}
-<<<<<<< HEAD
                         <Other_detail data={detail} />
-=======
-                        <Other_detail />
->>>>>>> origin/dev-aim
 
 
                         <Grid container marginTop={5} marginBottom={1}>
@@ -373,7 +358,6 @@ export default function detail_feed() {
                             </Grid>
 
                         </Grid>
-<<<<<<< HEAD
 
                         {
                             joiner.map((detail) => {
@@ -400,24 +384,6 @@ export default function detail_feed() {
 
 
 
-=======
-                        <Card sx={{ backgroundColor: COLORS.F4, }} elevation={0}>
-                            <Grid container padding={2}>
-                                <Grid item sx={2} >
-                                    <Image
-                                        src={profile_boy}
-                                        alt="profile"
-                                        width={60}
-                                        height={60}
-                                    />
-                                </Grid>
-                                <Grid item sx={10} marginLeft={3}>
-                                    <Typography style={{ fontWeight: 'bold' }} variant="h5">Macho.</Typography>
-                                    <div>24 years old</div>
-                                </Grid>
-                            </Grid>
-                        </Card>
->>>>>>> origin/dev-aim
                     </Grid>
                 </Grid>
             </Box>

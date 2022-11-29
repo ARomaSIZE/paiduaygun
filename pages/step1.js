@@ -100,6 +100,7 @@ export default function step1() {
             .then(function (response) {
                 console.log((response));
                 alert("ยืนยันการเดินทางเสร็จสิ้น")
+                router.push({pathname: '/home'})
                 setStep(3);
             }).catch(function (error) {
                 console.log(error);
@@ -111,6 +112,7 @@ export default function step1() {
             .then(function (response) {
                 console.log((response));
                 alert("ยกเลิกการเดินทางเสร็จสิ้น")
+                router.push({pathname: '/home'})
             }).catch(function (error) {
                 console.log(error);
             })

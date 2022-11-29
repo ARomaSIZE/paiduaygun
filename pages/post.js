@@ -22,6 +22,13 @@ import Suv from "../imgs/SUV.png";
 import Sedan from "../imgs/Sedan.png";
 import Sport from "../imgs/Sport.png";
 import Bike from "../imgs/bike.png";
+import InputAdornment from "@mui/material/InputAdornment";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 export default function Post() {
   const [alignment, setAlignment] = useState("Cabrio");
@@ -29,6 +36,9 @@ export default function Post() {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+
+  const [value, setValue] = useState(null);
+
   return (
     <>
       <Container fixed sx={{ marginTop: 10 }}>
@@ -49,7 +59,7 @@ export default function Post() {
             <Typography
               variant="body1"
               color="initial"
-              sx={{ fontWeight: 200, fontSize: 18, color: COLORS.grey1 }}
+              sx={{ fontSize: 18, color: COLORS.grey1 }}
             >
               Cover your driving costs by filing your seats when you’re driving
               from A to B
@@ -83,7 +93,7 @@ export default function Post() {
             <Box>
               <Typography
                 variant="body1"
-                color="initial"
+                color={COLORS.grey}
                 sx={{ fontWeight: 300, fontSize: 16 }}
               >
                 Origin *
@@ -93,6 +103,13 @@ export default function Post() {
                   id="outlined-basic"
                   variant="outlined"
                   sx={{ width: 540 }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LocationOnOutlinedIcon sx={{ color: COLORS.grey1 }} />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Box>
             </Box>
@@ -100,7 +117,7 @@ export default function Post() {
             <Box sx={{ marginLeft: 10 }}>
               <Typography
                 variant="body1"
-                color="initial"
+                color={COLORS.grey}
                 sx={{ fontWeight: 300, fontSize: 16 }}
               >
                 Destination *
@@ -110,6 +127,13 @@ export default function Post() {
                   id="outlined-basic"
                   variant="outlined"
                   sx={{ width: 540 }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LocationOnOutlinedIcon sx={{ color: COLORS.grey1 }} />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Box>
             </Box>
@@ -151,6 +175,13 @@ export default function Post() {
                 id="outlined-basic"
                 variant="outlined"
                 sx={{ width: 540 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LocationOnOutlinedIcon sx={{ color: COLORS.grey1 }} />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
@@ -195,11 +226,21 @@ export default function Post() {
                 Origin *
               </Typography>
               <Box>
-                <TextField
+                <LocalizationProvider
+                  dateAdapter={AdapterDayjs}
                   id="outlined-basic"
                   variant="outlined"
-                  sx={{ width: 540 }}
-                />
+                >
+                  <DatePicker
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} sx={{ width: 540 }} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Box>
             </Box>
 
@@ -212,11 +253,17 @@ export default function Post() {
                 Origin time*
               </Typography>
               <Box>
-                <TextField
-                  id="outlined-basic"
-                  variant="outlined"
-                  sx={{ width: 540 }}
-                />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimePicker
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} sx={{ width: 540 }} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Box>
             </Box>
           </Box>
@@ -238,11 +285,21 @@ export default function Post() {
                 Destination *
               </Typography>
               <Box>
-                <TextField
+                <LocalizationProvider
+                  dateAdapter={AdapterDayjs}
                   id="outlined-basic"
                   variant="outlined"
-                  sx={{ width: 540 }}
-                />
+                >
+                  <DatePicker
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} sx={{ width: 540 }} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Box>
             </Box>
 
@@ -255,11 +312,17 @@ export default function Post() {
                 Destination time*
               </Typography>
               <Box>
-                <TextField
-                  id="outlined-basic"
-                  variant="outlined"
-                  sx={{ width: 540 }}
-                />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimePicker
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} sx={{ width: 540 }} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Box>
             </Box>
           </Box>

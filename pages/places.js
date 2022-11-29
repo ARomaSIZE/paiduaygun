@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -14,15 +15,10 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+import { height } from "@mui/system";
 
 
-const Input = forwardRef((props, ref) => (
-  <input
-    ref={ref}
-    style={{ borderColor: "blue", position: "relative" }}
-    {...props}
-  />
-));
+
 
 export default function Places() {
   const [data, setData] = useState();
@@ -81,29 +77,25 @@ const PlacesAutocomplete = ({ setSelected }) => {
 
   };
 
-  return (<>
-    <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={data}
-      getOptionLabel={() => {
+  const inputStyle = {
+    width: 400,
+    fontSize: "100%",
+    padding: "0.33rem",
+    height:50,
+    border: '1px solid rgba(0, 0, 0, 0.2)',
+  };
 
-      }}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Location" />}
-    />
-
+  return (
+  <>
     <Combobox
-      
       onSelect={handleSelect}>
-      <ComboboxInput
-      as={Input}
-      aria-labelledby="demo"
+      <PlaceOutlinedIcon /><ComboboxInput
+      style={inputStyle}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         disabled={!ready}
         className="combobox-input"
-        placeholder="Search an address"
+        placeholder='🔎   Enter Country Name'
 
       />
       <ComboboxPopover>

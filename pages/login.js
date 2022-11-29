@@ -8,10 +8,36 @@ import { COLORS } from "../values/colors";
 import KeyIcon from '@mui/icons-material/Key';
 import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import axios from 'axios';
+import { useState } from "react";
 
 
 export default function Login() {
+
+  const [inputs, setInputs] = useState({});
+
+
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs({ ...inputs, [name]: value });
+}
+
+  const signIn = () => {
+
+      axios.post('http://localhost:3004/api/signin', {
+        username : inputs.username,
+        password : inputs.password
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      })
+  }
+
   return (
+
     <>
       <Container maxWidth="xl" sx={{ marginTop: 30 }}>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -35,18 +61,21 @@ export default function Login() {
                 Username
               </Typography>
               <Box>
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                sx={{ width: 400}}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <AccountCircleIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+                <TextField
+                  id="outlined-basic"
+                  onChange={handleChange}
+                  name="username"
+                  value={inputs.username}
+                  variant="outlined"
+                  sx={{ width: 400 }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AccountCircleIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
               </Box>
             </Box>
 
@@ -59,20 +88,23 @@ export default function Login() {
                 Password
               </Typography>
               <Box>
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                sx={{ width: 400 }}
-                type="password"
-                autoComplete="current-password"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <KeyIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+                <TextField
+                  id="outlined-basic"
+                  onChange={handleChange}
+                  name="password"
+                  value={inputs.password}
+                  variant="outlined"
+                  sx={{ width: 400 }}
+                  type="password"
+                  autoComplete="current-password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <KeyIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
               </Box>
             </Box>
 
@@ -85,6 +117,7 @@ export default function Login() {
             >
               <Button
                 variant="contained"
+                onClick={signIn}
                 sx={{
                   textTransform: "none",
                   boxShadow: "none",

@@ -68,8 +68,9 @@ export default function step1() {
         if (step == 0) {
             axios.post('http://localhost:3004/api/bookingTrip', {
                 userBookID: 5,
-                rideID: rideID
-            }).then(function (response) {
+                rideID: rideID,
+
+            }, { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } }).then(function (response) {
                 console.log(response);
                 // console.log(response.data.result.insertId);
                 alert('จองเสร็จสิ้น')
@@ -83,7 +84,7 @@ export default function step1() {
 
     const upDateStatusPayment = () => {
         if (step == 1) {
-            axios.post('http://localhost:3004/api/updateStatus', { tripID: newID })
+            axios.post('http://localhost:3004/api/updateStatus', { tripID: newID } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } })
                 .then(function (response) {
                     console.log(response);
                     alert('ชำระเงินเสร็จสิ้น')
@@ -95,8 +96,8 @@ export default function step1() {
     }
 
     const updateApproveChoiceLastTime = () => {
-        axios.post('http://localhost:3004/api/choiceStatus' , {tripID: newID , choiceStatus : 3})
-            .then(function(response) {
+        axios.post('http://localhost:3004/api/choiceStatus',  { tripID: newID, choiceStatus: 3 } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } })
+            .then(function (response) {
                 console.log((response));
                 alert("ยืนยันการเดินทางเสร็จสิ้น")
                 setStep(3);
@@ -105,14 +106,14 @@ export default function step1() {
             })
     }
 
-    const updateDisApproveChoiceLastTime =() => {
-        axios.post('http://localhost:3004/api/choiceStatus' , {tripID: newID , choiceStatus : 4})
-        .then(function(response) {
-            console.log((response));
-            alert("ยกเลิกการเดินทางเสร็จสิ้น")
-        }).catch(function (error) {
-            console.log(error);
-        })
+    const updateDisApproveChoiceLastTime = () => {
+        axios.post('http://localhost:3004/api/choiceStatus', { tripID: newID, choiceStatus: 4 } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } })
+            .then(function (response) {
+                console.log((response));
+                alert("ยกเลิกการเดินทางเสร็จสิ้น")
+            }).catch(function (error) {
+                console.log(error);
+            })
     }
 
 

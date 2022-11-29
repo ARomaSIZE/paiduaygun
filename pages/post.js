@@ -100,7 +100,7 @@ export default function Post() {
       priceperpass: inputs.priceperpassenger,
       carid: alignment,
       ownerrideid: 2,
-    }).then(response => {
+    } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } }).then(response => {
       console.log(response);
     }).then(error => {
       console.log(error);

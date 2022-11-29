@@ -14,11 +14,19 @@ import SmokingRoomsOutlinedIcon from '@mui/icons-material/SmokingRoomsOutlined';
 import EventSeatOutlinedIcon from '@mui/icons-material/EventSeatOutlined'; //seat
 import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined'; //baby
 import LuggageOutlinedIcon from '@mui/icons-material/LuggageOutlined'; //Trunk space
+import { useEffect, useState } from "react";
 
 
 
 
-export default function CarInfo(){
+export default function CarInfo({data}){
+
+    // const [detailCar , setDetailCar] = useState([]);
+    // useEffect(() => {
+    //     setDetailCar(...data);
+
+    // } , [data])
+    
     return(
         <>
             <Grid container spacing={1} >
@@ -37,7 +45,7 @@ export default function CarInfo(){
                                             <DirectionsCarFilledOutlinedIcon sx={{ color: COLORS.B2 }} /> Car:
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Van</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.car_name}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -47,7 +55,7 @@ export default function CarInfo(){
                                             <CreditCardOutlinedIcon sx={{ color: COLORS.B2 }} /> License Car:
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>NCT 127XX</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.ride_licensecar}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -57,7 +65,7 @@ export default function CarInfo(){
                                             <PetsOutlinedIcon sx={{ color: COLORS.B2 }} /> Pet allowed:
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Yes</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.ride_pet == 1 ? "Yes" : "No"}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -68,7 +76,7 @@ export default function CarInfo(){
                                             <MusicNoteOutlinedIcon sx={{ color: COLORS.B2 }} /> Music:
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>Yes</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.ride_music == 1 ? "Yes" : "No"}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -79,7 +87,7 @@ export default function CarInfo(){
                                             <SmokingRoomsOutlinedIcon sx={{ color: COLORS.B2 }} /> Smoking:
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>No</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.ride_music == 1 ? "Yes" : "No"}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -94,7 +102,7 @@ export default function CarInfo(){
                                             <EventSeatOutlinedIcon sx={{ color: COLORS.B2 }} /> Seats:
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>4</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.ride_seatnum}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -105,7 +113,7 @@ export default function CarInfo(){
                                             <ChildCareOutlinedIcon sx={{ color: COLORS.B2 }} /> Baby seat:
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>1</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.ride_babysetnum}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -116,7 +124,7 @@ export default function CarInfo(){
                                             <LuggageOutlinedIcon sx={{ color: COLORS.B2 }} /> Trunk space::
                                         </Grid>
                                         <Grid item>
-                                            <span style={{ color: COLORS.grey1 }}>2 big bags max</span>
+                                            <span style={{ color: COLORS.grey1 }}>{data[0]?.ride_trunkspace}</span>
                                         </Grid>
                                     </Grid>
                                 </Box>

@@ -1,7 +1,7 @@
 import { Box, Grid, Divider, Typography, Button, Card, Checkbox } from "@mui/material";
 import Stack from '@mui/material/Stack';
-import { useState } from "react";
-import {COLORS} from "../values/colors.js"
+import { useEffect, useState } from "react";
+import { COLORS } from "../values/colors.js"
 import Image from 'next/image';
 import profile_boy from "../imgs/profile_boy.jpg"
 
@@ -30,6 +30,9 @@ import CarInfo from "../src/components/CarInfo";
 
 import Driver_detail from "../src/components/Driver_detail.js";
 import Other_detail from "../src/components/Other_detail.js";
+import { useRouter } from "next/router.js";
+import axios from "axios";
+
 
 const steps = [
     'Step',
@@ -40,8 +43,78 @@ const steps = [
 
 
 export default function step1() {
-    var step = 3;
+
+    const router = useRouter();
+    const { rideID } = router.query;
+    const [detail, setDetail] = useState([]);
+    const [newID, setnewID] = useState(0);
+    const [step, setStep] = useState(0);
+
+    useEffect(() => {
+        axios.get('http://localhost:3004/api/detailRide', { params: { tripID: rideID } })
+            .then(response => {
+                setDetail(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, [rideID]);
+
+
     var btntxt = '';
+
+
+    const bookingTrip = () => {
+        if (step == 0) {
+            axios.post('http://localhost:3004/api/bookingTrip', {
+                userBookID: 5,
+                rideID: rideID
+            }).then(function (response) {
+                console.log(response);
+                // console.log(response.data.result.insertId);
+                alert('จองเสร็จสิ้น')
+                setStep(1)
+                setnewID(response.data.result.insertId)
+            }).catch(function (error) {
+                console.log(error);
+            })
+        }
+    }
+
+    const upDateStatusPayment = () => {
+        if (step == 1) {
+            axios.post('http://localhost:3004/api/updateStatus', { tripID: newID })
+                .then(function (response) {
+                    console.log(response);
+                    alert('ชำระเงินเสร็จสิ้น')
+                    setStep(2);
+                }).catch(function (error) {
+                    console.log(error);
+                })
+        }
+    }
+
+    const updateApproveChoiceLastTime = () => {
+        axios.post('http://localhost:3004/api/choiceStatus' , {tripID: newID , choiceStatus : 3})
+            .then(function(response) {
+                console.log((response));
+                alert("ยืนยันการเดินทางเสร็จสิ้น")
+                setStep(3);
+            }).catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    const updateDisApproveChoiceLastTime =() => {
+        axios.post('http://localhost:3004/api/choiceStatus' , {tripID: newID , choiceStatus : 4})
+        .then(function(response) {
+            console.log((response));
+            alert("ยกเลิกการเดินทางเสร็จสิ้น")
+        }).catch(function (error) {
+            console.log(error);
+        })
+    }
+
 
     //Dialog rating
     const [openDialog, setOpen] = useState(false);
@@ -54,7 +127,7 @@ export default function step1() {
     };
 
     //Dialog payment
-    
+
 
 
 
@@ -77,8 +150,8 @@ export default function step1() {
                             </Stepper>
                         </Box>
 
-                       {/* driver info  */}
-                       <Driver_detail/>
+                        {/* driver info  */}
+                        <Driver_detail />
 
 
                         <Grid container marginTop={5} marginBottom={1}>
@@ -90,10 +163,10 @@ export default function step1() {
                             </Grid>
 
                         </Grid>
-                        
-                        
-                       <Grid><CarInfo/></Grid> 
-                    
+
+
+                        <Grid><CarInfo data={detail} /></Grid>
+
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -105,7 +178,7 @@ export default function step1() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> OTHER DETAILS</span></div> */}
-                       <Other_detail/>
+                        <Other_detail data={detail} />
 
 
                     </Grid>
@@ -182,12 +255,12 @@ export default function step1() {
                                     <Grid container>
                                         <Grid item xs={12}>
                                             {step == 0 ?
-                                                <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth>CHECK OUT</Button> :
-                                                step == 1 ? <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth>PAYMENT</Button> : step == 2 ?
+                                                <Button variant="contained" sx={{ color: COLORS.B1 }} onClick={bookingTrip} fullWidth>CHECK OUT</Button> :
+                                                step == 1 ? <Button variant="contained" sx={{ color: COLORS.B1 }} onClick={upDateStatusPayment} fullWidth>PAYMENT</Button> : step == 2 ?
                                                     <Box sx={{ display: 'flex' }}>
-                                                        <Button variant="contained" sx={{ color: COLORS.white, width: '100%' }} color="error">CANCEL
+                                                        <Button variant="contained" sx={{ color: COLORS.white, width: '100%' }} color="error" onClick={updateDisApproveChoiceLastTime}>CANCEL
                                                         </Button>
-                                                        <Button variant="contained" sx={{ color: COLORS.B1, width: '100%' }} >APPROVE
+                                                        <Button variant="contained" sx={{ color: COLORS.B1, width: '100%' }} onClick={updateApproveChoiceLastTime}>APPROVE
                                                         </Button> </Box> : <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth onClick={handleClickOpen}>RATING</Button>
                                                 // Dialog
                                             }

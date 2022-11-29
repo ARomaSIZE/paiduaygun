@@ -15,7 +15,9 @@ import { Stack } from "@mui/system";
 import { COLORS } from "../values/colors";
 import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import { useState } from "react";
 
@@ -30,10 +32,23 @@ import TextField from '@mui/material/TextField';
 
 import InputAdornment from '@mui/material/InputAdornment';
 
+import Link from "next/link";
+
 
 
 
 export default function Home() {
+  const [value, setValue] = useState(null);
+  const [inputs , setInputs] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs({ ...inputs, [name]: value })
+  };
+
+  console.log(window.sessionStorage.token);
+
   return (
     <>
       <Stack>
@@ -57,6 +72,9 @@ export default function Home() {
                 <Grid item sx={3}>
                   <TextField
                     id="outlined-start-adornment"
+                    name = "livingfrom"
+                    onChange={handleChange}
+                    value={inputs.livingfrom}
                     sx={{ m: 1, }}
                     placeholder="Living from..."
                     InputProps={{
@@ -67,6 +85,9 @@ export default function Home() {
                 <Grid item sx={3}>
                   <TextField
                     id="outlined-start-adornment"
+                    name = "goingto"
+                    onChange={handleChange}
+                    value={inputs.goingto}
                     sx={{ m: 1, }}
                     placeholder="Going to..."
                     InputProps={{
@@ -76,14 +97,23 @@ export default function Home() {
 
                 </Grid>
                 <Grid item sx={3}>
-                  <TextField
-                    id="outlined-start-adornment"
-                    sx={{ m: 1,  }}
-                    placeholder="Today"
-                    InputProps={{
-                      startAdornment: <InputAdornment position="start"><CalendarTodayOutlinedIcon /></InputAdornment>,
+                <Box>
+                <LocalizationProvider
+                  dateAdapter={AdapterDayjs}
+                  id="outlined-basic"
+                  variant="outlined"
+                >
+                  <DatePicker
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
                     }}
+                    renderInput={(params) => (
+                      <TextField {...params} sx={{ width: 200 , marginTop: 1}} />
+                    )}
                   />
+                </LocalizationProvider>
+              </Box>
 
 
 
@@ -91,6 +121,9 @@ export default function Home() {
                 <Grid item sx={{ width: '8rem' }}>
                   <TextField
                     id="outlined-start-adornment"
+                    name = "person"
+                    onChange={handleChange}
+                    value={inputs.person}
                     sx={{ m: 1, }}
                     placeholder="0"
                     InputProps={{
@@ -100,7 +133,7 @@ export default function Home() {
 
                 </Grid>
                 <Grid item >
-                  <Button variant="contained" sx={{ m: 1, width: '12Vw', height: '5.7Vh' }}>Search</Button>
+                  <Button variant="contained" sx={{ m: 1, width: '12Vw', height: '5.7Vh' }}><Link href={{pathname: "/feed" , query:{from:inputs.livingfrom , to:inputs.goingto , date: value, person: inputs.person }}}>Search</Link></Button>
                 </Grid>
               </Grid>
             </Box>

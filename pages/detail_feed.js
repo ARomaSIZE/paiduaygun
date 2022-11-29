@@ -31,24 +31,71 @@ import Other_detail from "../src/components/Other_detail.js";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
 export default function detail_feed() {
+
+    const router = useRouter();
+    const { rideID } = router.query;
+    const [detail, setDetail] = useState([]);
+    const [joiner , setJoiner] = useState([]);
+    console.log(rideID);
+
+    const formatDate = (datetime) => {
+        const d = new Date(datetime);
+        let year = d.getFullYear();
+        let month = d.getMonth();
+        let date = d.getDate();
+        let time = d.toLocaleTimeString();
+
+        return date + "/" + month + "/" + year + " @ " + time
+    }
+
+    function dateToTime(datetime) {
+        const d = new Date(datetime);
+        let time = d.toLocaleTimeString();
+        return time
+    }
+
+    useEffect(() => {
+        axios.get('http://localhost:3004/api/detailRide', { params: { tripID: rideID } })
+            .then(response => {
+                setDetail(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, [rideID]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3004/api/joinerTrip' , {params: {tripID : rideID}})
+            .then(response => {
+                setJoiner(response.data);
+            }).catch(error => {
+                console.log(error);
+            })
+    } , [rideID])
+
+    console.log(joiner);
+
+
     return (
         <>
             <Box sx={{ backgroundColor: COLORS.B2 }}>
                 <Grid container color={COLORS.F4} padding={5} >
                     <Grid item xs={2} marginTop={10} marginLeft={8}>
-                        <PersonOutlineOutlinedIcon />2 seates available
+                        <PersonOutlineOutlinedIcon />{detail[0]?.ride_nowhaspass} seates available
                     </Grid>
-                   
+
                     <Grid item xs={12} marginLeft={8}>
-                        <h1>Meaung Chiang mai   <ArrowForwardIosOutlinedIcon />   Meaung Mae hong sorn</h1>
+                        <h1>{detail[0]?.ride_origin}   <ArrowForwardIosOutlinedIcon />  {detail[0]?.ride_destination}</h1>
                     </Grid>
                 </Grid>
             </Box>
-
             <Box sx={{ marginTop: 5, marginLeft: 12, marginRight: 12, marginBottom: 12 }}>
                 <Grid container spacing={5}>
                     <Grid item xs={8} wrap='nowrap'>
@@ -59,10 +106,9 @@ export default function detail_feed() {
                             <Grid item sx={10}>
                                 <HorizontalRuleIcon width={100}></HorizontalRuleIcon>
                             </Grid>
-
                         </Grid>
 
-                        <CalendarTodayOutlinedIcon sx={{ color: COLORS.B2 }} />  <span >Date & time:</span>  <span style={{ color: COLORS.grey }}> 06/03/2022 @16:00    to     07/03/2022 @15:00</span>
+                        <CalendarTodayOutlinedIcon sx={{ color: COLORS.B2 }} />  <span >Date & time:</span>  <span style={{ color: COLORS.grey }}> {formatDate(detail[0]?.ride_origindatetime)}    to    {formatDate(detail[0]?.ride_destinationdatetime)}</span>
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
                                 <span style={{ fontWeight: 'bold' }}> DESTINATION INFO</span>
@@ -73,8 +119,8 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> DESTINATION INFO</span></div> */}
-                        <Box ><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} /> <span>16:00</span> <span>Meaung Chiang mai</span>  </Box>
-                        <Box><PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>18:00</span> <span>Mae hong sorn</span>  </Box>
+                        <Box ><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} /> <span>{dateToTime(detail[0]?.ride_origindatetime)}</span> <span>{detail[0]?.ride_origin}</span>  </Box>
+                        <Box><PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>{dateToTime(detail[0]?.ride_destinationdatetime)}</span> <span>{detail[0]?.ride_destination}</span>  </Box>
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -86,7 +132,7 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> CAR INFO</span></div> */}
-                        <Grid><CarInfo/></Grid>
+                        <Grid><CarInfo data={detail} /></Grid>
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -98,7 +144,7 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> OTHER DETAILS</span></div> */}
-                        <Other_detail/>
+                        <Other_detail data={detail} />
 
 
                         <Grid container marginTop={5} marginBottom={1}>
@@ -128,7 +174,7 @@ export default function detail_feed() {
                             <Grid item xs={10}>
                                 <Grid container direction="row" justifyContent="space-between" alignItems="center" marginBottom={2}>
                                     <Grid item>
-                                        <Typography style={{ fontWeight: 'bold' }} variant="h5">Taeo Maxview. <CheckCircleIcon sx={{ color: COLORS.success }} /></Typography>
+                                        <Typography style={{ fontWeight: 'bold' }} variant="h5">{detail[0]?.user_firstname} {detail[0]?.user_lastname} <CheckCircleIcon sx={{ color: COLORS.success }} /></Typography>
                                     </Grid>
                                     <Grid item>
                                         <Button variant="outlined" style={{ color: COLORS.B2 }}>
@@ -139,10 +185,10 @@ export default function detail_feed() {
                                 <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
                                 <Grid container direction="row" alignItems="center" spacing={5}  >
                                     <Grid item>
-                                        <span>Gender : Male</span>
+                                        <span>Gender : {detail[0]?.user_gender == 1 ? "Male" : "Female"}</span>
                                     </Grid>
                                     <Grid item>
-                                        <span>Age : 23 years old</span>
+                                        <span>Age : {detail[0]?.user_age} years old</span>
                                     </Grid>
                                     <Grid item>
                                         <StarIcon sx={{ color: COLORS.warign }} /> 4.3
@@ -166,7 +212,7 @@ export default function detail_feed() {
                                             <Typography style={{ fontWeight: 'bold' }} >PRICE PER SEAT</Typography>
                                         </Grid>
                                         <Grid item>
-                                            <Typography style={{ fontWeight: 'bold', color: COLORS.B2 }} variant="h4">$ 350</Typography>
+                                            <Typography style={{ fontWeight: 'bold', color: COLORS.B2 }} variant="h4">$ {detail[0]?.ride_priceperpass}</Typography>
                                         </Grid>
                                     </Grid>
                                 </ListItem>
@@ -179,18 +225,32 @@ export default function detail_feed() {
                                                 seat(s) in the vehicle.
                                             </div>
                                             <Box sx={{ display: 'flex' }}>
-                                            <FormControl>
-                                                <FormGroup aria-label="position" row>
-                                                    <FormControlLabel value="1" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
-                                                    <FormControlLabel value="2" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
-                                                    <FormControlLabel value="3" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
-                                                    <FormControlLabel value="4" control={ <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />}/>
-                                                </FormGroup>
-                                            </FormControl>
+                                                <FormControl>
+                                                    <FormGroup aria-label="position" row>
+                                                        {
+                                                            (() => {
+                                                                const check = [];
+                                                                for (let i = 0; i < detail[0]?.ride_passenger; i++) {
+                                                                    if ((i) >= detail[0]?.ride_nowhaspass) {
+                                                                        check.push(<FormControlLabel value="1" control={<Checkbox disabled icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />} />)
+                                                                    } else {
+                                                                        check.push(<FormControlLabel value="1" control={<Checkbox disabled checked icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />} />)
+                                                                    }
+
+                                                                }
+                                                                return check
+                                                            })()
+                                                        }
+
+                                                        {/* <FormControlLabel value="2" control={<Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />} />
+                                                        <FormControlLabel value="3" control={<Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />} />
+                                                        <FormControlLabel value="4" control={<Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />} /> */}
+                                                    </FormGroup>
+                                                </FormControl>
                                             </Box>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <span style={{ color: COLORS.grey2 }}> 2 seats available</span>
+                                            <span style={{ color: COLORS.grey2 }}> ${detail[0]?.ride_nowhaspass} seats available</span>
                                         </Grid>
                                     </Grid>
                                 </ListItem>
@@ -202,7 +262,7 @@ export default function detail_feed() {
                                             sure to be there at least 25 minutes earlier.
                                         </div>
                                         <Box sx={{ border: 1, borderRadius: '10px', padding: '10px', borderColor: COLORS.grey2, margin: '10px' }}>
-                                            413/22 M.1  Tasud ...
+                                            {detail[0]?.ride_pickup}
                                         </Box>
 
                                     </Grid>
@@ -214,7 +274,7 @@ export default function detail_feed() {
                                 <ListItem >
                                     <Grid container>
                                         <Grid item xs={12}>
-                                            <Button variant="contained" sx={{ color: COLORS.B1 }} fullWidth>BOOK THIS RIDE</Button>
+                                            <Button variant="contained" sx={{ color: COLORS.B1 }} onClick={()=> router.push({pathname: '/step1' , query:{rideID: rideID}})} fullWidth >BOOK THIS RIDE</Button>
                                         </Grid>
                                     </Grid>
 
@@ -230,27 +290,36 @@ export default function detail_feed() {
                             </Grid>
 
                         </Grid>
-                        <Card sx={{backgroundColor:COLORS.F4,}} elevation={0}>
-                        <Grid container padding={2}>
-                            <Grid item sx={2} >
-                            <Image
-                                src={profile_boy}
-                                alt="profile"
-                                width={60}
-                                height={60}
-                            />
-                            </Grid>
-                            <Grid item sx={10} marginLeft={3}>
-                            <Typography style={{ fontWeight: 'bold' }} variant="h5">Macho.</Typography>
-                             <div>24 years old</div>
-                            </Grid>
-                        </Grid>
-                        </Card>
+
+                        {
+                            joiner.map((detail) => {
+                                return (
+                                    <Card sx={{ backgroundColor: COLORS.F4, marginBottom: 1 }} elevation={0}>
+                                        <Grid container padding={2}>
+                                            <Grid item sx={2} >
+                                                <Image
+                                                    src={profile_boy}
+                                                    alt="profile"
+                                                    width={60}
+                                                    height={60}
+                                                />
+                                            </Grid>
+                                            <Grid item sx={10} marginLeft={3}>
+                                                <Typography style={{ fontWeight: 'bold' }} variant="h5">{detail.user_firstname} {detail.user_lastname}</Typography>
+                                                <div>{detail.user_age} years old</div>
+                                            </Grid>
+                                        </Grid>
+                                    </Card>
+                                )
+                            })
+                        }
+
 
 
                     </Grid>
                 </Grid>
             </Box>
+
         </>
     )
 }

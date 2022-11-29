@@ -10,11 +10,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Login() {
 
   const [inputs, setInputs] = useState({});
-
+  const router = useRouter();
 
 
   const handleChange = (event) => {
@@ -29,7 +30,8 @@ export default function Login() {
         username : inputs.username,
         password : inputs.password
       }).then(function (response) {
-        console.log(response);
+        router.push({pathname: '/home'})
+        window.sessionStorage.token = response.data.token;
       }).catch(function (error) {
         console.log(error);
       })

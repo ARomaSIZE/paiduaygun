@@ -16,6 +16,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Slider from '@mui/material/Slider';
 import Stack from "@mui/system";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 
 //Date
 import TextField from '@mui/material/TextField';
@@ -27,6 +29,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from '@mui/material/Button';
 
 import History_post from "../src/components/History_post";
+import Link from "next/link";
 
 
 function valuetext(value) {
@@ -37,66 +40,74 @@ function valuetext(value) {
 
 
 export default function Feed() {
-  const [valueAge, setValueAge] = useState([20, 37]);
+  const [valueAge, setValueAge] = useState([20, 99]);
   const [valuePrice, setValuePrice] = useState([10, 3000]);
   const [valueDate, setValueDate] = useState(null);
+  const [valueGender , setGender] = useState(0)
 
 
   const handleChangeAge = (event, newValue) => {
     setValueAge(newValue);
+
   };
   const handleChangePrice = (event, newValue) => {
     setValuePrice(newValue);
   };
 
+  const handleChangeGender = (event) => {
+    setGender(event.target.value);
+  }
+
   return (
     <>
       <Grid container spacing={1}>
         <Grid item xs={3}>
-          <Container sx={{ backgroundColor: COLORS.F4 ,p:2}}>
+          <Container sx={{ backgroundColor: COLORS.F4, p: 2 }}>
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 p: 2,
                 m: 0,
-                
+
                 borderRadius: 1,
               }}
             >
               <Typography
                 variant="h6"
-                sx={{ fontWeight: 'bold'}}
+                sx={{ fontWeight: 'bold' }}
               >
                 FILTERS
               </Typography>
               <Typography
                 variant="h7"
-                sx={{ fontWeight: 'bold' ,color:COLORS.grey1 }}
+                sx={{ fontWeight: 'bold', color: COLORS.grey1 }}
               >
                 RESET
               </Typography>
             </Box>
-            <Divider sx={{marginBottom:'1rem'}}></Divider>
+            <Divider sx={{ marginBottom: '1rem' }}></Divider>
             <FormGroup>
               <FormControlLabel control={<Checkbox defaultChecked />} label="Nearby" />
             </FormGroup>
 
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Gender
             </Typography>
             <FormGroup>
-              <FormControlLabel control={<Checkbox />} label="Male" />
-              <FormControlLabel control={<Checkbox />} label="Female" />
-              <FormControlLabel control={<Checkbox defaultChecked />} label="All" />
+              <RadioGroup defaultValue="3" onChange={handleChangeGender} value={valueGender}>
+                <FormControlLabel control={<Radio />} value={1} label="Male" />
+                <FormControlLabel control={<Radio />} value={2} label="Female" />
+                <FormControlLabel control={<Radio />} value={3} label="All" />
+              </RadioGroup>
             </FormGroup>
 
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Age
             </Typography>
@@ -113,7 +124,7 @@ export default function Feed() {
 
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Price
             </Typography>
@@ -127,10 +138,10 @@ export default function Feed() {
                 getAriaValueText={valuetext}
               />
             </Box>
-            <Divider  sx={{marginBottom:'0.1rem',marginTop:'1rem'}}></Divider>
+            <Divider sx={{ marginBottom: '0.1rem', marginTop: '1rem' }}></Divider>
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Select date
             </Typography>
@@ -143,7 +154,7 @@ export default function Feed() {
 
                 }}
                 renderInput={(params) => <TextField {...params} />}
-                
+
               />
             </LocalizationProvider>
           </Container>
@@ -239,7 +250,7 @@ export default function Feed() {
                 <Box>
                   <Typography
 
-                    sx={{ fontSize: '16px', marginTop: '7px', color: COLORS.grey, marginBottom:'2rem'}}
+                    sx={{ fontSize: '16px', marginTop: '7px', color: COLORS.grey, marginBottom: '2rem' }}
                   >
                     01/10/2022  |  2  persons
                   </Typography>
@@ -249,11 +260,11 @@ export default function Feed() {
 
               </div>
 
-              <Button variant="outlined" sx={{ height: '3rem' }}>Change search</Button>
+              <Button variant="outlined" sx={{ height: '3rem' }}><Link href={{ pathname: "/home" }}>Change Search</Link></Button>
             </Box>
-            
+
           </Box>
-          <History_post/>
+          <History_post data={{ valueAge, valuePrice, valueDate , valueGender }} />
 
         </Grid>
 

@@ -29,15 +29,84 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import axios from "axios";
 
 export default function Post() {
   const [alignment, setAlignment] = useState("Cabrio");
+  const [inputs, setInputs] = useState({});
+  const [value, setValue] = useState(null);
+  const [destinationValue, setDestinationValue] = useState(null);
+  const [allowPet, setAllowPet] = useState(0);
+  const [allowMusic, setAllowMusic] = useState(0);
+  const [allowSmoking, setAllowSmoking] = useState(0)
 
-  const handleChange = (event, newAlignment) => {
+  const handleChangePet = (event) => {
+    setAllowPet(event.target.value);
+  }
+  const handleChangeMusic = (event) => {
+    setAllowMusic(event.target.value);
+  }
+  const hanldeChangeSmoking = (event) => {
+    setAllowSmoking(event.target.value);
+  }
+
+  const handleChangeCar = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
 
-  const [value, setValue] = useState(null);
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs({ ...inputs, [name]: value })
+  };
+
+  const post = () => {
+
+    let d = new Date(destinationValue);
+    let year = d.getFullYear();
+    let month = d.getMonth();
+    let date = d.getDate();
+    let hour = d.getHours();
+    let minute = d.getMinutes();
+    let second = d.getSeconds();
+
+    let o = new Date(value);
+    let o_year = o.getFullYear();
+    let o_month = o.getMonth();
+    let o_date = o.getDate();
+    let o_hour = o.getHours();
+    let o_minute = o.getMinutes();
+    let o_second = o.getSeconds();
+    
+    axios.post("http://localhost:3004/api/addRide", {
+      origin: inputs.origin,
+      destination: inputs.destination,
+      pickupspot: inputs.pickuppoint,
+      origindatetime: o_year+ "-" + o_month + "-" + o_date + " " + o_hour + ":" + o_minute + ":" + o_second,
+      origin_lat: '19.65320484911604',
+      origin_long: '99.7689085555405',
+      destinationdatetime: year+ "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second,
+      destination_lat: '19.432',
+      destination_long: '99.543',
+      licensecar: inputs.licensecar,
+      trunkspace: inputs.trunkspace,
+      seatnum: inputs.seat,
+      babyseatnum: inputs.babyseat,
+      pet: allowPet,
+      music: allowMusic,
+      smoke: allowSmoking,
+      otherdetail: inputs.otherDetail,
+      passenger: inputs.passenger,
+      priceperpass: inputs.priceperpassenger,
+      carid: alignment,
+      ownerrideid: 2,
+    }).then(response => {
+      console.log(response);
+    }).then(error => {
+      console.log(error);
+    })
+
+  }
 
   return (
     <>
@@ -101,6 +170,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="origin"
+                  value={inputs.origin}
                   variant="outlined"
                   sx={{ width: 540 }}
                   InputProps={{
@@ -125,6 +197,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="destination"
+                  value={inputs.destination}
                   variant="outlined"
                   sx={{ width: 540 }}
                   InputProps={{
@@ -174,6 +249,9 @@ export default function Post() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
+                onChange={handleChange}
+                name="pickuppoint"
+                value={inputs.pickuppoint}
                 sx={{ width: 540 }}
                 InputProps={{
                   startAdornment: (
@@ -291,9 +369,9 @@ export default function Post() {
                   variant="outlined"
                 >
                   <DatePicker
-                    value={value}
+                    value={destinationValue}
                     onChange={(newValue) => {
-                      setValue(newValue);
+                      setDestinationValue(newValue);
                     }}
                     renderInput={(params) => (
                       <TextField {...params} sx={{ width: 540 }} />
@@ -314,9 +392,9 @@ export default function Post() {
               <Box>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <TimePicker
-                    value={value}
+                    value={destinationValue}
                     onChange={(newValue) => {
-                      setValue(newValue);
+                      setDestinationValue(newValue);
                     }}
                     renderInput={(params) => (
                       <TextField {...params} sx={{ width: 540 }} />
@@ -365,12 +443,12 @@ export default function Post() {
               color="primary"
               value={alignment}
               exclusive
-              onChange={handleChange}
+              onChange={handleChangeCar}
               aria-label="Platform"
               sx={{ marginTop: 2 }}
             >
               <ToggleButton
-                value="Cabrio"
+                value={1}
                 sx={{ marginRight: 2, borderRadius: 1 }}
               >
                 <Image src={Cabrio} alt="Cabrio" height={45} />
@@ -384,7 +462,7 @@ export default function Post() {
               </ToggleButton>
 
               <ToggleButton
-                value="Van"
+                value={2}
                 sx={{ marginRight: 2, borderRadius: 1 }}
               >
                 <Image src={Van} alt="Van" height={25} />
@@ -398,7 +476,7 @@ export default function Post() {
               </ToggleButton>
 
               <ToggleButton
-                value="Pickup"
+                value={3}
                 sx={{ marginRight: 2, borderRadius: 1 }}
               >
                 <Image src={Pickup} alt="Pickup" height={45} />
@@ -412,7 +490,7 @@ export default function Post() {
               </ToggleButton>
 
               <ToggleButton
-                value="SUV"
+                value={4}
                 sx={{ marginRight: 2, borderRadius: 1 }}
               >
                 <Image src={Suv} alt="SUV" height={45} />
@@ -426,7 +504,7 @@ export default function Post() {
               </ToggleButton>
 
               <ToggleButton
-                value="Sedan"
+                value={5}
                 sx={{ marginRight: 2, borderRadius: 1 }}
               >
                 <Image src={Sedan} alt="Sedan" height={20} />
@@ -440,7 +518,7 @@ export default function Post() {
               </ToggleButton>
 
               <ToggleButton
-                value="Sport"
+                value={6}
                 sx={{ marginRight: 2, borderRadius: 1 }}
               >
                 <Image src={Sport} alt="Sport" height={45} />
@@ -454,7 +532,7 @@ export default function Post() {
               </ToggleButton>
 
               <ToggleButton
-                value="Motercycle"
+                value={7}
                 sx={{ marginRight: 2, borderRadius: 1 }}
               >
                 <Image src={Bike} alt="Bike" height={45} />
@@ -488,6 +566,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="licensecar"
+                  value={inputs.licensecar}
                   variant="outlined"
                   sx={{ width: 540 }}
                 />
@@ -505,6 +586,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="trunkspace"
+                  value={inputs.trunkspace}
                   variant="outlined"
                   sx={{ width: 540 }}
                 />
@@ -531,6 +615,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="seat"
+                  value={inputs.seat}
                   variant="outlined"
                   sx={{ width: 540 }}
                 />
@@ -548,6 +635,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="babyseat"
+                  value={inputs.babyseat}
                   variant="outlined"
                   sx={{ width: 540 }}
                 />
@@ -567,7 +657,7 @@ export default function Post() {
                 Pet allowed
               </Typography>
               <FormControlLabel
-                control={<Checkbox />}
+                control={<Checkbox onChange={handleChangePet} value={1} />}
                 label="Pet allowed for cat, dog, bird..."
               />
             </Box>
@@ -577,7 +667,7 @@ export default function Post() {
                 Music allowed
               </Typography>
               <FormControlLabel
-                control={<Checkbox />}
+                control={<Checkbox onChange={handleChangeMusic} value={1} />}
                 label="Music allowed just for chill..."
               />
             </Box>
@@ -587,7 +677,7 @@ export default function Post() {
                 Smoking allowed
               </Typography>
               <FormControlLabel
-                control={<Checkbox />}
+                control={<Checkbox onChange={hanldeChangeSmoking} value={1} />}
                 label="Rider can smoked..."
               />
             </Box>
@@ -597,6 +687,16 @@ export default function Post() {
             <Typography variant="body1" color="initial" sx={{ fontSize: 24 }}>
               Other details
             </Typography>
+            <TextField
+              id="outlined-multiline-static"
+              onChange={handleChange}
+              name="otherDetail"
+              value={inputs.otherDetail}
+              multiline
+              rows={4}
+              sx={{ width: 1160 }}
+
+            />
           </Box>
 
           <Box>
@@ -641,6 +741,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="priceperpassenger"
+                  value={inputs.priceperpassenger}
                   variant="outlined"
                   sx={{ width: 540 }}
                 />
@@ -658,6 +761,9 @@ export default function Post() {
               <Box>
                 <TextField
                   id="outlined-basic"
+                  onChange={handleChange}
+                  name="passenger"
+                  value={inputs.passenger}
                   variant="outlined"
                   sx={{ width: 540 }}
                 />
@@ -736,7 +842,7 @@ export default function Post() {
           </Box>
 
           <Box sx={{ marginBottom: 20 }}>
-            <Button variant="contained">
+            <Button variant="contained" onClick={post}>
               <Typography
                 variant="body1"
                 color="initial"

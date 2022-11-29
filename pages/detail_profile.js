@@ -299,7 +299,7 @@ export default function Detail_profile() {
                              // // maxHeight: { xs: 200, md: 167 },
                              // maxWidth: { xs: 100, md: 100 },
                          }}
-                         src={license}
+                         src={idcard}
                      />
                  </Box>
 
@@ -319,7 +319,7 @@ export default function Detail_profile() {
                              // maxHeight: { xs: 233, md: 167 },
                              // maxWidth: { xs: 350, md: 250 },
                          }}
-                         src={idcard}
+                         src={license}
                      />
                  </Box>
              </Box>

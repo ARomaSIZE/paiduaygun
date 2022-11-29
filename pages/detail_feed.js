@@ -1,4 +1,5 @@
 import { Box, Grid, Container, Divider, Paper, Typography, Button, Card, Checkbox } from "@mui/material";
+import { useState } from "react";
 import { COLORS } from "../values/colors";
 import Image from 'next/image';
 import profile_boy from "../imgs/profile_boy.jpg"
@@ -28,8 +29,33 @@ import CarInfo from "../src/components/CarInfo";
 import Other_detail from "../src/components/Other_detail.js";
 
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
+
+
+
 
 export default function detail_feed() {
+    const phone = '02811212';
+    const email = 'aimaim.3112@gmail.com';
+    const otherContact = 'Facebook:Aumaim';
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpenContact = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <>
             <Box sx={{ backgroundColor: COLORS.B2 }}>
@@ -37,7 +63,7 @@ export default function detail_feed() {
                     <Grid item xs={2} marginTop={10} marginLeft={8}>
                         <PersonOutlineOutlinedIcon />2 seates available
                     </Grid>
-                   
+
                     <Grid item xs={12} marginLeft={8}>
                         <h1>Meaung Chiang mai   <ArrowForwardIosOutlinedIcon />   Meaung Mae hong sorn</h1>
                     </Grid>
@@ -81,7 +107,7 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> CAR INFO</span></div> */}
-                        <Grid><CarInfo/></Grid> 
+                        <Grid><CarInfo /></Grid>
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -93,8 +119,8 @@ export default function detail_feed() {
 
                         </Grid>
                         {/* <div><span style={{ fontWeight: 'bold' }}> OTHER DETAILS</span></div> */}
-                        <Other_detail/>
-                        
+                        <Other_detail />
+
 
                         <Grid container marginTop={5} marginBottom={1}>
                             <Grid item sx={2}>
@@ -126,11 +152,57 @@ export default function detail_feed() {
                                         <Typography style={{ fontWeight: 'bold' }} variant="h5">Taeo Maxview. <CheckCircleIcon sx={{ color: COLORS.success }} /></Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Button variant="outlined" style={{ color: COLORS.B2 }}>
+                                        <Button variant="outlined" style={{ color: COLORS.B2 }} onClick={handleClickOpenContact}>
                                             Contact
                                         </Button>
                                     </Grid>
                                 </Grid>
+
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            <Typography sx={{color:'black'}}>CONTACT</Typography>
+                                            <Divider></Divider>
+                                            <Box sx={{  borderColor: 'grey.400', borderRadius: 1 ,backgroundColor:COLORS.F4,marginTop:'1rem'}}>
+                                                <Typography
+                                                    variant="body1"
+                                                    sx={{ fontSize: 16, p: 2, width: '19rem', color: COLORS.grey }}
+                                                >
+                                                 <Box sx={{ display: 'flex' }}> <LocalPhoneIcon sx={{color:COLORS.B3,marginRight:'15px'}}/>  <Typography sx={{}}>{phone}</Typography> </Box>
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{ backgroundColor:COLORS.F4, borderColor: 'grey.400', borderRadius: 1 ,marginTop:'0.5rem'}}>
+                                                <Typography
+                                                    variant="body1"
+                                                    sx={{ fontSize: 16, p: 2, width: '19rem', color: COLORS.grey }}
+                                                >
+                                                 <Box sx={{ display: 'flex' }}> <MailOutlineIcon sx={{color:COLORS.B3,marginRight:'15px'}}/>  <Typography sx={{}}>{email}</Typography> </Box>
+                                                </Typography>
+                                            </Box>
+                                            
+                                            <Box sx={{ backgroundColor:COLORS.F4, borderColor: 'grey.400', borderRadius: 1,marginTop:'0.5rem' }}>
+                                                <Typography
+                                                    variant="body1"
+                                                    sx={{ fontSize: 16, p: 2, width: '19rem', color: COLORS.grey }}
+                                                >
+                                                 <Box sx={{ display: 'flex' }} > <ContactMailOutlinedIcon sx={{color:COLORS.B3 ,marginRight:'15px'}}/>  <Typography >{otherContact}</Typography> </Box>
+                                                </Typography>
+                                            </Box>
+
+                                            <Button variant="contained" sx={{ color: COLORS.B1,marginTop:'1rem' }} onClick={handleClose} autoFocus fullWidth>OK</Button>
+
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    
+                                </Dialog>
+                                {/* Dialog cantact */}
+
                                 <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
                                 <Grid container direction="row" alignItems="center" spacing={5}  >
                                     <Grid item>
@@ -221,24 +293,22 @@ export default function detail_feed() {
                             </Grid>
 
                         </Grid>
-                        <Card sx={{backgroundColor:COLORS.F4,}} elevation={0}>
-                        <Grid container padding={2}>
-                            <Grid item sx={2} >
-                            <Image
-                                src={profile_boy}
-                                alt="profile"
-                                width={60}
-                                height={60}
-                            />
+                        <Card sx={{ backgroundColor: COLORS.F4, }} elevation={0}>
+                            <Grid container padding={2}>
+                                <Grid item sx={2} >
+                                    <Image
+                                        src={profile_boy}
+                                        alt="profile"
+                                        width={60}
+                                        height={60}
+                                    />
+                                </Grid>
+                                <Grid item sx={10} marginLeft={3}>
+                                    <Typography style={{ fontWeight: 'bold' }} variant="h5">Macho.</Typography>
+                                    <div>24 years old</div>
+                                </Grid>
                             </Grid>
-                            <Grid item sx={10} marginLeft={3}>
-                            <Typography style={{ fontWeight: 'bold' }} variant="h5">Macho.</Typography>
-                             <div>24 years old</div>  
-                            </Grid>
-                        </Grid>
                         </Card>
-
-
                     </Grid>
                 </Grid>
             </Box>

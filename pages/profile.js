@@ -1,9 +1,11 @@
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { COLORS } from "../values/colors";
+import NavsideProfile from "../src/components/NavSideProfile";
 
 export default function Profile() {
    const status =1;
@@ -19,12 +21,16 @@ export default function Profile() {
    const address = '333 M.1'
    const idcard = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2';
    const license = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2';
-   
+
    return (
       <>
-         <Container maxWidth="xl" sx={{ marginTop: 5 }}>
 
-            <Box
+         <Grid container padding={5} marginLeft={15}>
+                <Grid item xs={1.5}>
+                  <NavsideProfile/>
+                </Grid>
+                <Grid item xs={9}>
+                <Box
                sx={{ display: "flex", justifyContent: "center", marginBottom: 2 }}
             >
                <Box>
@@ -384,7 +390,8 @@ export default function Profile() {
             >
                Edit profile
             </Button>
-         </Container>
+                </Grid>
+            </Grid>
       </>
    );
 }

@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
 import History_booking from "../src/components/History_booking";
+import NavsiadProfile from "../src/components/NavSideProfile";
 
 
 
@@ -21,29 +22,15 @@ import History_booking from "../src/components/History_booking";
 
 export default function history_booking() {
 
-
-
     return (
         <>
             <Grid container padding={5} marginLeft={15}>
                 <Grid item xs={1.5}>
-                    <Stack spacing={3}>
-                        <Paper elevation={0}>
-                            <MenuList>
-                                <MenuItem>Personal data</MenuItem>
-                                <MenuItem>History post</MenuItem>
-                                <MenuItem>History booking</MenuItem>
-                            </MenuList>
-                        </Paper>
-                    </Stack>
-
+                  <NavsiadProfile/>
                 </Grid>
                 <Grid item xs={9}>
-                    
                     <History_booking/>
-                
                 </Grid>
-
             </Grid>
         </>
     )

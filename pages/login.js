@@ -11,7 +11,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
 import { useState } from "react";
 
-
 export default function Login() {
 
   const [inputs, setInputs] = useState({});

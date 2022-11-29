@@ -72,7 +72,7 @@ export default function Historypost() {
                                         <Grid item marginLeft={3} xs={5.5}>
                                             <Stack spacing={1} direction="column" >
                                                 <div>{user.date}</div>
-                                                    <Box ><span>{user.timeorigin}</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>{user.origin}</span>  </Box>
+                                                    <Box><span>{user.timeorigin}</span><PlaceOutlinedIcon sx={{ color: COLORS.grey2 }} />  <span>{user.origin}</span>  </Box>
                                                     <Box><span>{user.timedes}</span> <PlaceOutlinedIcon sx={{ color: COLORS.B2 }} /> <span>{user.destination}</span>  </Box>
                                                 <Box>
                                                     <Checkbox icon={<CircleIcon sx={{ color: COLORS.grey2 }} />} checkedIcon={<CheckCircleIcon sx={{ color: COLORS.success }} />} />

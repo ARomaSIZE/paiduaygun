@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -34,12 +34,13 @@ function valuetext(value) {
 }
 
 
-
-
 export default function Feed() {
   const [valueAge, setValueAge] = useState([20, 37]);
   const [valuePrice, setValuePrice] = useState([10, 3000]);
   const [valueDate, setValueDate] = useState(null);
+
+  const [lat, setLat] = useState()
+  const [lon, setLon] = useState()
 
 
   const handleChangeAge = (event, newValue) => {
@@ -49,42 +50,60 @@ export default function Feed() {
     setValuePrice(newValue);
   };
 
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((postion) => {
+      setLat(postion.coords.latitude)
+      setLon(postion.coords.longitude)
+    })
+  })
+
+
   return (
     <>
       <Grid container spacing={1}>
         <Grid item xs={3}>
-          <Container sx={{ backgroundColor: COLORS.F4 ,p:2}}>
+          <Container sx={{ backgroundColor: COLORS.F4, p: 2 }}>
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 p: 2,
                 m: 0,
-                
+
                 borderRadius: 1,
               }}
             >
               <Typography
                 variant="h6"
-                sx={{ fontWeight: 'bold'}}
+                sx={{ fontWeight: 'bold' }}
               >
                 FILTERS
               </Typography>
               <Typography
                 variant="h7"
-                sx={{ fontWeight: 'bold' ,color:COLORS.grey1 }}
+                sx={{ fontWeight: 'bold', color: COLORS.grey1 }}
               >
                 RESET
               </Typography>
             </Box>
-            <Divider sx={{marginBottom:'1rem'}}></Divider>
+            <Divider sx={{ marginBottom: '1rem' }}></Divider>
             <FormGroup>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Nearby" />
+              <FormControlLabel control={<Checkbox value="Tutor 1" onClick={() => {
+                navigator.geolocation.getCurrentPosition((postion) => {
+                  setLat(postion.coords.latitude);
+                  setLon(postion.coords.longitude);
+                })
+                console.log(lat);
+                console.log(lon);
+              }} />} label="Nearby" />
             </FormGroup>
+
+
 
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Gender
             </Typography>
@@ -96,7 +115,7 @@ export default function Feed() {
 
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Age
             </Typography>
@@ -113,7 +132,7 @@ export default function Feed() {
 
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Price
             </Typography>
@@ -127,10 +146,10 @@ export default function Feed() {
                 getAriaValueText={valuetext}
               />
             </Box>
-            <Divider  sx={{marginBottom:'0.1rem',marginTop:'1rem'}}></Divider>
+            <Divider sx={{ marginBottom: '0.1rem', marginTop: '1rem' }}></Divider>
             <Typography
               variant="h5"
-              sx={{marginBottom:'0.5rem',marginTop:'1rem'}}
+              sx={{ marginBottom: '0.5rem', marginTop: '1rem' }}
             >
               Select date
             </Typography>
@@ -143,7 +162,7 @@ export default function Feed() {
 
                 }}
                 renderInput={(params) => <TextField {...params} />}
-                
+
               />
             </LocalizationProvider>
           </Container>
@@ -239,7 +258,7 @@ export default function Feed() {
                 <Box>
                   <Typography
 
-                    sx={{ fontSize: '16px', marginTop: '7px', color: COLORS.grey, marginBottom:'2rem'}}
+                    sx={{ fontSize: '16px', marginTop: '7px', color: COLORS.grey, marginBottom: '2rem' }}
                   >
                     01/10/2022  |  2  persons
                   </Typography>
@@ -251,9 +270,9 @@ export default function Feed() {
 
               <Button variant="outlined" sx={{ height: '3rem' }}>Change search</Button>
             </Box>
-            
+
           </Box>
-          <History_post/>
+          <History_post />
 
         </Grid>
 

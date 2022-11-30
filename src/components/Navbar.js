@@ -28,7 +28,7 @@ export default function Navbar() {
             </Grid>
 
             <Grid item>
-              <Link href="/home">
+              <Link href="/">
                 <Typography color={COLORS.grey1} sx={{ fontSize: 18 }}>
                   Home
                 </Typography>

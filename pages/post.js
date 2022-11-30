@@ -30,8 +30,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Post() {
+
+  const router = useRouter();
+
   const [alignment, setAlignment] = useState("Cabrio");
   const [inputs, setInputs] = useState({});
   const [value, setValue] = useState(null);
@@ -102,6 +106,10 @@ export default function Post() {
       ownerrideid: 2,
     } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } }).then(response => {
       console.log(response);
+      alert('โพสเสร็จสิ้น');
+      router.push({pathname: '/'});
+      
+
     }).then(error => {
       console.log(error);
     })

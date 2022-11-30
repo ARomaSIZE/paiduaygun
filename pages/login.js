@@ -11,6 +11,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Swal from 'sweetalert2'
+
 
 export default function Login() {
 
@@ -22,19 +24,31 @@ export default function Login() {
     const name = event.target.name;
     const value = event.target.value;
     setInputs({ ...inputs, [name]: value });
-}
+  }
 
   const signIn = () => {
 
-      axios.post('http://localhost:3004/api/signin', {
-        username : inputs.username,
-        password : inputs.password
-      }).then(function (response) {
-        router.push({pathname: '/home'})
-        window.sessionStorage.token = response.data.token;
-      }).catch(function (error) {
-        console.log(error);
+    axios.post('http://localhost:3004/api/signin', {
+      username: inputs.username,
+      password: inputs.password
+    }).then(function (response) {
+      Swal.fire({
+        icon: 'success',
+        text: 'Login success',
       })
+
+      router.push({ pathname: '/' })
+      window.sessionStorage.token = response.data.token;
+      window.sessionStorage.userID = response.data.userData.id
+      console.log(window.sessionStorage.userID);
+    }).catch(function (error) {
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Username or Password is not correct',
+      })
+    })
   }
 
   return (

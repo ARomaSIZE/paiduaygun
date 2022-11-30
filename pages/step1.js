@@ -100,7 +100,7 @@ export default function step1() {
             .then(function (response) {
                 console.log((response));
                 alert("ยืนยันการเดินทางเสร็จสิ้น")
-                router.push({pathname: '/home'})
+                router.push({pathname: '/'})
                 setStep(3);
             }).catch(function (error) {
                 console.log(error);
@@ -112,7 +112,7 @@ export default function step1() {
             .then(function (response) {
                 console.log((response));
                 alert("ยกเลิกการเดินทางเสร็จสิ้น")
-                router.push({pathname: '/home'})
+                router.push({pathname: '/'})
             }).catch(function (error) {
                 console.log(error);
             })
@@ -205,7 +205,7 @@ export default function step1() {
                                             <Typography style={{ color: COLORS.grey2 }} >Pick-up point:</Typography>
                                         </Grid>
                                         <Grid item>
-                                            <Typography style={{ color: COLORS.grey1, fontWeight: 'bold' }} >Ban du</Typography>
+                                            <Typography style={{ color: COLORS.grey1, fontWeight: 'bold' }} >{detail[0]?.ride_pickup}</Typography>
                                         </Grid>
                                     </Grid>
                                 </ListItem>
@@ -227,7 +227,7 @@ export default function step1() {
                                             <Typography style={{ color: COLORS.grey2 }} >Price:</Typography>
                                         </Grid>
                                         <Grid item>
-                                            <Typography style={{ color: COLORS.grey1, fontWeight: 'bold' }} >$350</Typography>
+                                            <Typography style={{ color: COLORS.grey1, fontWeight: 'bold' }} >${detail[0]?.ride_priceperpass}</Typography>
                                         </Grid>
                                     </Grid>
                                 </ListItem>
@@ -238,7 +238,7 @@ export default function step1() {
                                             <Typography style={{ color: COLORS.grey2 }} >Taxes:</Typography>
                                         </Grid>
                                         <Grid item>
-                                            <Typography style={{ color: COLORS.grey1, fontWeight: 'bold' }} >$17.5</Typography>
+                                            <Typography style={{ color: COLORS.grey1, fontWeight: 'bold' }} >${detail[0]?.ride_priceperpass * 0.07}</Typography>
                                         </Grid>
                                     </Grid>
                                 </ListItem>
@@ -249,7 +249,7 @@ export default function step1() {
                                             <Typography variant="h5">Total:</Typography>
                                         </Grid>
                                         <Grid item>
-                                            <Typography style={{ color: COLORS.B2, fontWeight: 'bold' }} variant="h5" >$367.5</Typography>
+                                            <Typography style={{ color: COLORS.B2, fontWeight: 'bold' }} variant="h5" >${detail[0]?.ride_priceperpass + (detail[0]?.ride_priceperpass * 0.07)}</Typography>
                                         </Grid>
                                     </Grid>
 

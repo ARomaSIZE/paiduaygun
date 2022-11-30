@@ -47,7 +47,6 @@ export default function Home() {
     setInputs({ ...inputs, [name]: value })
   };
 
-  console.log(window.sessionStorage.token);
 
   return (
     <>

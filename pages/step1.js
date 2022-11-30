@@ -32,6 +32,7 @@ import Driver_detail from "../src/components/Driver_detail.js";
 import Other_detail from "../src/components/Other_detail.js";
 import { useRouter } from "next/router.js";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 
 const steps = [
@@ -73,7 +74,13 @@ export default function step1() {
             }, { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } }).then(function (response) {
                 console.log(response);
                 // console.log(response.data.result.insertId);
-                alert('จองเสร็จสิ้น')
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Booking Success',
+                    showConfirmButton: true,
+                    timer: 1500
+                  })
                 setStep(1)
                 setnewID(response.data.result.insertId)
             }).catch(function (error) {
@@ -87,7 +94,13 @@ export default function step1() {
             axios.post('http://localhost:3004/api/updateStatus', { tripID: newID } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } })
                 .then(function (response) {
                     console.log(response);
-                    alert('ชำระเงินเสร็จสิ้น')
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Payment Success',
+                        showConfirmButton: true,
+                        timer: 1500
+                      })
                     setStep(2);
                 }).catch(function (error) {
                     console.log(error);
@@ -99,7 +112,13 @@ export default function step1() {
         axios.post('http://localhost:3004/api/choiceStatus',  { tripID: newID, choiceStatus: 3 } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } })
             .then(function (response) {
                 console.log((response));
-                alert("ยืนยันการเดินทางเสร็จสิ้น")
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Approve Travel Success',
+                    showConfirmButton: true,
+                    timer: 1500
+                  })
                 router.push({pathname: '/'})
                 setStep(3);
             }).catch(function (error) {
@@ -111,7 +130,13 @@ export default function step1() {
         axios.post('http://localhost:3004/api/choiceStatus', { tripID: newID, choiceStatus: 4 } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } })
             .then(function (response) {
                 console.log((response));
-                alert("ยกเลิกการเดินทางเสร็จสิ้น")
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Cancel Travel Success',
+                    showConfirmButton: true,
+                    timer: 1500
+                  })
                 router.push({pathname: '/'})
             }).catch(function (error) {
                 console.log(error);

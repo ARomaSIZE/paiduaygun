@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import { COLORS } from "../values/colors";
@@ -31,6 +31,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Swal from 'sweetalert2'
+
 
 export default function Post() {
 
@@ -43,6 +45,10 @@ export default function Post() {
   const [allowPet, setAllowPet] = useState(0);
   const [allowMusic, setAllowMusic] = useState(0);
   const [allowSmoking, setAllowSmoking] = useState(0)
+
+  useEffect(() => {
+    console.log(window.sessionStorage.userID);
+  } , [])
 
   const handleChangePet = (event) => {
     setAllowPet(event.target.value);
@@ -106,12 +112,25 @@ export default function Post() {
       ownerrideid: 2,
     } , { headers: { Authorization: `Bearer ${window.sessionStorage.token}` } }).then(response => {
       console.log(response);
-      alert('โพสเสร็จสิ้น');
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'post success',
+        showConfirmButton: true,
+        timer: 1500
+      })
       router.push({pathname: '/'});
       
 
-    }).then(error => {
+    }).catch(error => {
       console.log(error);
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error Post',
+        showConfirmButton: true,
+        timer: 1500
+      })
     })
 
   }

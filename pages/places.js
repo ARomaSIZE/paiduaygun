@@ -95,7 +95,7 @@ const PlacesAutocomplete = ({ setSelected }) => {
         onChange={(e) => setValue(e.target.value)}
         disabled={!ready}
         className="combobox-input"
-        placeholder='🔎   Enter Country Name'
+        placeholder='📍  Enter Country Name'
 
       />
       <ComboboxPopover>
